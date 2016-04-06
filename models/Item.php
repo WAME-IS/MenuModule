@@ -2,10 +2,15 @@
 
 namespace Wame\MenuModule\Models;
 
+use Nette\Utils\Strings;
+
 class Item
 {	
     /** @var array */
     private $attributes = [];
+    
+    /** @var string */
+    private $before = null;
     
     /** @var string */
     private $description;
@@ -15,6 +20,9 @@ class Item
     
     /** @var string */
     private $link;
+    
+    /** @var string */
+    private $name;
     
     /** @var string */
     private $title;
@@ -31,6 +39,19 @@ class Item
 	public function addAttributes($attributes)
     {
         $this->attributes = $attributes;
+        
+        return $this;
+    }
+    
+    /**
+     * Insert item before other item
+     * 
+     * @param string $itemName
+     * @return \App\AdminModule\Components\AdminMenuControl\Item
+     */
+	public function insertBefore($itemName)
+    {
+        $this->before = $itemName;
         
         return $this;
     }
@@ -75,6 +96,19 @@ class Item
     }
     
     /**
+     * Set item name
+     * 
+     * @param string $name
+     * @return \App\AdminModule\Components\AdminMenuControl\Item
+     */
+	public function setName($name)
+    {
+        $this->name = $name;
+        
+        return $this;
+    }
+    
+    /**
      * Set item title
      * 
      * @param string $title
@@ -95,29 +129,12 @@ class Item
      */
     public function addNode($node)
     {
-        $this->nodes[] = $node;
+        if ($node->name) {
+            $this->nodes[$node->name] = $node;
+        } else {
+            $this->nodes[Strings::webalize($node->title)] = $node;
+        }
         
-        return $this;
-    }
-	
-    /**
-     * Add sseparator
-     * 
-     * @param string $title
-     * @return \App\AdminModule\Components\AdminMenuControl\Item
-     */
-    public function addSeparator($title = null)
-    {
-        $return = new \stdClass();
-        $return->attributes = ['class' => 'divider'];
-        $return->description = null;
-        $return->icon = null;
-        $return->link = null;
-        $return->title = $title;
-        $return->nodes = null;
-		
-		$this->nodes[] = $return;
-
         return $this;
     }
     
@@ -130,13 +147,29 @@ class Item
     {
         $return = new \stdClass();
         $return->attributes = $this->attributes;
+        $return->before = $this->before;
         $return->description = $this->description;
         $return->icon = $this->icon;
         $return->link = $this->link;
+        $return->name = $this->getName();
         $return->title = $this->title;
         $return->nodes = $this->nodes;
         
         return $return;
+    }
+    
+    /**
+     * Get item name
+     * 
+     * @return string
+     */
+    private function getName()
+    {
+        if ($this->name) {
+            return $this->name;
+        } else {
+            return Strings::webalize($this->title);
+        }
     }
 
 }

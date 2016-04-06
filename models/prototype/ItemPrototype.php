@@ -13,6 +13,7 @@ class ItemPrototype
     private $element;
 
     /**
+     * Item process
      * 
      * @param Html $element
      * @param array $items
@@ -23,7 +24,7 @@ class ItemPrototype
         $this->element = $element;
         
         foreach ($items as $item) {
-            $this->items[] = $this->getItem($item);
+            $this->items[] = clone $this->getItem($item);
         }
 
 		return $this->items;
@@ -33,10 +34,11 @@ class ItemPrototype
      * Generate Html item
      * 
      * @param \stdClass $item
+     * @param int $level
      * @return Html
      */
     private function getItem($item, $level = 0)
-    {        
+    {      
         $html = $this->setIcon($item);
         $html .= $this->setTitle($item);
         $html .= $this->setDescription($item);
@@ -58,7 +60,7 @@ class ItemPrototype
                             ->setHtml($this->getNodes($item, $level));
         }
         
-        return $this->element->addAttributes($item->attributes)->setHtml($return);
+        return $this->element->addAttributes($item->attributes)->data('name', $item->name)->setHtml($return);
     }
     
     /**
