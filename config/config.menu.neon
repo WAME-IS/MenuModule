@@ -1,5 +1,4 @@
 services:
-    menu.module: Wame\MenuModule
 
     - Wame\MenuModule\Models\MenuBuilder
     - Wame\MenuModule\Models\Prototype\ItemPrototype
