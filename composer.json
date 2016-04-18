@@ -1,7 +1,7 @@
 {
-	"name": "wame/menuModule",
+	"name": "wame/MenuModule",
 	"version": "0.0.1",
-	"description": "CMS WAME admin Core",
+	"description": "CMS WAME admin",
 	"homepage": "http://wame.sk/cms-wame-admin",
 	"authors": [
 		{
@@ -10,7 +10,7 @@
 		}
 	],
 	"require": {
-		"wame/core": "*"
+		"wame/Core": "*"
 	},
 	"autoload": {
 		"classmap": ["."]
