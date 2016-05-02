@@ -12,6 +12,7 @@ class ItemPrototype
     /** @var Html */
     private $element;
 
+	
     /**
      * Item process
      * 
@@ -23,13 +24,16 @@ class ItemPrototype
 	{
         $this->element = $element;
         
-        foreach ($items as $item) {
-            $this->items[] = clone $this->getItem($item);
+        foreach ($items as $priority) {
+			foreach ($priority as $item) {
+				$this->items[] = clone $this->getItem($item);
+			}
         }
 
 		return $this->items;
 	}
     
+	
     /**
      * Generate Html item
      * 
@@ -63,6 +67,7 @@ class ItemPrototype
         return $this->element->addAttributes($item->attributes)->data('name', $item->name)->setHtml($return);
     }
     
+	
     /**
      * Set Html icon
      * 
@@ -81,6 +86,7 @@ class ItemPrototype
         return $html;
     }
     
+	
     /**
      * Set Html title
      * 
@@ -100,6 +106,7 @@ class ItemPrototype
         return $html;
     }
     
+	
     /**
      * Set Html description
      * 
@@ -119,6 +126,7 @@ class ItemPrototype
         return $html;
     }
     
+	
     /**
      * Get item nodes
      * 

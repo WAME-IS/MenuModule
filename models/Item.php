@@ -9,8 +9,8 @@ class Item
     /** @var array */
     private $attributes = [];
     
-    /** @var string */
-    private $before = null;
+    /** @var int */
+    private $priority = 0;
     
     /** @var string */
     private $description;
@@ -30,6 +30,7 @@ class Item
     /** @var array */
     private $nodes = [];
     
+	
     /**
      * Set item CSS class
      * 
@@ -43,18 +44,20 @@ class Item
         return $this;
     }
     
+	
     /**
-     * Insert item before other item
+     * Set item priority
      * 
-     * @param string $itemName
+     * @param int $priority
      * @return \App\AdminModule\Components\AdminMenuControl\Item
      */
-	public function insertBefore($itemName)
+	public function setPriority($priority)
     {
-        $this->before = $itemName;
+        $this->priority = $priority;
         
         return $this;
     }
+	
     
     /**
      * Set item description
@@ -69,6 +72,7 @@ class Item
         return $this;
     }
     
+	
     /**
      * Set item icon
      * 
@@ -81,6 +85,7 @@ class Item
         
         return $this;
     }
+	
     
     /**
      * Set item link
@@ -95,6 +100,7 @@ class Item
         return $this;
     }
     
+	
     /**
      * Set item name
      * 
@@ -108,6 +114,7 @@ class Item
         return $this;
     }
     
+	
     /**
      * Set item title
      * 
@@ -121,6 +128,7 @@ class Item
         return $this;
     }
     
+	
     /**
      * Add sub item
      * 
@@ -137,6 +145,7 @@ class Item
         
         return $this;
     }
+	
     
     /**
      * Return item object
@@ -147,7 +156,7 @@ class Item
     {
         $return = new \stdClass();
         $return->attributes = $this->attributes;
-        $return->before = $this->before;
+        $return->priority = $this->priority;
         $return->description = $this->description;
         $return->icon = $this->icon;
         $return->link = $this->link;
@@ -168,7 +177,7 @@ class Item
         if ($this->name) {
             return $this->name;
         } else {
-            return Strings::webalize($this->title);
+            throw new \Exception(_('The menu item must be given name. Please use setName() method.'));
         }
     }
 

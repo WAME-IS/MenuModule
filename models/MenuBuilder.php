@@ -18,6 +18,7 @@ class MenuBuilder
     /** @var Html */
     private $item;
     
+	
     public function __construct() 
     {
         $this->container = Html::el('div');
@@ -25,6 +26,7 @@ class MenuBuilder
         $this->item = Html::el('li');
     }
     
+	
     /**
      * Set providers
      * 
@@ -38,6 +40,7 @@ class MenuBuilder
         return $this;
     }
     
+	
     /**
      * Set Html container prototype
      * 
@@ -51,6 +54,7 @@ class MenuBuilder
         return $this;
     }
     
+	
     /**
      * Set Html list prototype
      * 
@@ -64,6 +68,7 @@ class MenuBuilder
         return $this;
     }
     
+	
     /**
      * Set Html item prototype
      * 
@@ -77,6 +82,12 @@ class MenuBuilder
         return $this;
     }
     
+	
+	/**
+	 * Get items
+	 * 
+	 * @return array
+	 */
     private function getItems()
     {
         $items = [];
@@ -90,6 +101,7 @@ class MenuBuilder
         return $itemPrototype->process($this->item, $items);
     }
 
+	
     /**
      * Create menu object
      * 
