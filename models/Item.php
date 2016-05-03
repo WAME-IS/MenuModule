@@ -21,6 +21,9 @@ class Item
     /** @var string */
     private $link;
     
+    /** @var boolean */
+    private $modal = false;
+    
     /** @var string */
     private $name;
     
@@ -102,6 +105,20 @@ class Item
     
 	
     /**
+     * Set open in modal
+     * 
+     * @param boolean $modal
+     * @return \App\AdminModule\Components\AdminMenuControl\Item
+     */
+	public function setModal($modal)
+    {
+        $this->modal = $modal;
+        
+        return $this;
+    }
+    
+	
+    /**
      * Set item name
      * 
      * @param string $name
@@ -160,6 +177,7 @@ class Item
         $return->description = $this->description;
         $return->icon = $this->icon;
         $return->link = $this->link;
+        $return->modal = $this->modal;
         $return->name = $this->getName();
         $return->title = $this->title;
         $return->nodes = $this->nodes;
@@ -167,6 +185,7 @@ class Item
         return $return;
     }
     
+	
     /**
      * Get item name
      * 

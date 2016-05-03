@@ -1,0 +1,4 @@
+services:
+	ComponentManager:
+		setup:
+			- addComponent(Wame\MenuModule\Vendor\Wame\ComponentModule\MenuComponent())

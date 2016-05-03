@@ -91,7 +91,7 @@ class MenuBuilder
     private function getItems()
     {
         $items = [];
-        
+
         foreach ($this->providers as $provider) {
             $items = array_merge($provider->getItems(), $items);
         }

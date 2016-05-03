@@ -1,5 +1,6 @@
 services:
-
     - Wame\MenuModule\Models\MenuBuilder
     - Wame\MenuModule\Models\Prototype\ItemPrototype
+    - Wame\MenuModule\Models\ItemSorter
     - Wame\MenuModule\Components\MenuControl
+    - Wame\MenuModule\Components\IMenuControlFactory

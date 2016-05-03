@@ -138,8 +138,10 @@ class ItemPrototype
     {
         $html = '';
         
-        foreach ($item->nodes as $item) {
-            $html .= $this->getItem($item, $level);
+        foreach ($item->nodes as $priority) {
+			foreach ($priority as $item) {
+				$html .= $this->getItem($item, $level);
+			}
         }
         
         return $html;

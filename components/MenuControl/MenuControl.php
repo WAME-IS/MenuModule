@@ -5,21 +5,32 @@ namespace Wame\MenuModule\Components;
 use Nette\Utils\Html;
 use Wame\MenuModule\Models\MenuBuilder;
 
+interface IMenuControlFactory
+{
+	/** @return MenuControl */
+	public function create();	
+}
+
+
 class MenuControl extends \App\AdminModule\Components\BaseControl
 {	
+	/** @var MenuBuilder */
     private $menuBuilder;
     
+	/** @var array */
     private $providers;
     
  	/** @var string */
 	private $templateFile;
     
+	
     public function __construct(MenuBuilder $menuBuilder) 
     {
         parent::__construct();
         
         $this->menuBuilder = $menuBuilder;
     }
+	
 	
     /**
      * Add provider
@@ -43,6 +54,7 @@ class MenuControl extends \App\AdminModule\Components\BaseControl
         
         return $this;
     }
+	
     
     /**
      * Set Html list prototype
@@ -56,6 +68,7 @@ class MenuControl extends \App\AdminModule\Components\BaseControl
         
         return $this;
     }
+	
     
     /**
      * Set Html item prototype
@@ -70,6 +83,7 @@ class MenuControl extends \App\AdminModule\Components\BaseControl
         return $this;
     }
     
+	
 	/**
 	 * Set template file
 	 * 
@@ -82,6 +96,7 @@ class MenuControl extends \App\AdminModule\Components\BaseControl
 		
 		return $this;
 	}
+	
 	
 	public function render()
 	{
