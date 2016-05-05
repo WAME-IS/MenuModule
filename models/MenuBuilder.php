@@ -17,6 +17,9 @@ class MenuBuilder
 
     /** @var Html */
     private $item;
+
+    /** @var string */
+    private $itemTemplate;
     
 	
     public function __construct() 
@@ -83,6 +86,20 @@ class MenuBuilder
     }
     
 	
+    /**
+     * Set item template
+     * 
+     * @param object $namespace
+     * @return \Wame\MenuModule\Models\MenuBuilder
+     */
+    public function setItemTemplate($namespace)
+    {
+        $this->itemTemplate = $namespace;
+        
+        return $this;
+    }
+    
+	
 	/**
 	 * Get items
 	 * 
@@ -98,7 +115,7 @@ class MenuBuilder
         
         $itemPrototype = new \Wame\MenuModule\Models\Prototype\ItemPrototype();
 
-        return $itemPrototype->process($this->item, $items);
+        return $itemPrototype->process($this->item, $items, $this->itemTemplate);
     }
 
 	

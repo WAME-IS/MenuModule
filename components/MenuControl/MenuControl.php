@@ -19,10 +19,7 @@ class MenuControl extends \App\AdminModule\Components\BaseControl
     
 	/** @var array */
     private $providers;
-    
- 	/** @var string */
-	private $templateFile;
-    
+        
 	
     public function __construct(MenuBuilder $menuBuilder) 
     {
@@ -82,17 +79,17 @@ class MenuControl extends \App\AdminModule\Components\BaseControl
         
         return $this;
     }
-    
+	
 	
 	/**
-	 * Set template file
+	 * Set Item template
 	 * 
-	 * @param string $template
-	 * @return \App\AdminModule\Components\AdminMenuControl\AdminMenuControl
+	 * @param object $namespace
+	 * @return \Wame\MenuModule\Components\MenuControl
 	 */
-	public function setTemplateFile($template)
+	public function setItemTemplate($namespace)
 	{
-		$this->templateFile = $template;
+		$this->menuBuilder->setItemTemplate($namespace);
 		
 		return $this;
 	}

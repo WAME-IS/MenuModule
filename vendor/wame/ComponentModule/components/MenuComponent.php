@@ -27,7 +27,7 @@ class MenuComponent implements \Wame\MenuModule\Models\IMenuItem
 		$item = new \Wame\MenuModule\Models\Item();
 		$item->setName('menu');
 		$item->setTitle(_('Menu'));
-		$item->setLink($this->linkGenerator->link('Admin:Menu:create', ['id' => null]));
+		$item->setLink($this->linkGenerator->link('Admin:Menu:create'));
 		$item->setIcon('fa fa-list');
 		
 		return $item->getItem();

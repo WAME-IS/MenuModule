@@ -1,0 +1,12 @@
+services:
+	PermissionObject:
+		setup:
+			- addResource('admin.menu')
+			- addResourceAction('admin.menu', 'view')
+			- allow('moderator', 'admin.menu', 'view')
+			- addResourceAction('admin.menu', 'create')
+			- allow('moderator', 'admin.menu', 'create')
+			- addResourceAction('admin.menu', 'update')
+			- allow('moderator', 'admin.menu', 'update')
+			- addResourceAction('admin.menu', 'delete')
+			- allow('moderator', 'admin.menu', 'delete')

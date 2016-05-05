@@ -18,15 +18,20 @@ class ItemPrototype
      * 
      * @param Html $element
      * @param array $items
+     * @param string $itemTemplate
      * @return array
      */
-	public function process($element, $items)
+	public function process($element, $items, $itemTemplate = null)
 	{
         $this->element = $element;
         
         foreach ($items as $priority) {
 			foreach ($priority as $item) {
-				$this->items[] = clone $this->getItem($item);
+				if ($itemTemplate) {
+					$this->items[] = clone $itemTemplate->createItem($element, $item);
+				} else {
+					$this->items[] = clone $this->getItem($item);
+				}
 			}
         }
 
@@ -74,7 +79,7 @@ class ItemPrototype
      * @param \stdClass $item
      * @return Html
      */
-    private function setIcon($item)
+    public function setIcon($item)
     {
         $html = null;
         
@@ -93,7 +98,7 @@ class ItemPrototype
      * @param \stdClass $item
      * @return Html
      */
-    private function setTitle($item)
+    public function setTitle($item)
     {
         $html = null;
         
@@ -113,7 +118,7 @@ class ItemPrototype
      * @param \stdClass $item
      * @return Html
      */
-    private function setDescription($item)
+    public function setDescription($item)
     {
         $html = null;
         
@@ -134,7 +139,7 @@ class ItemPrototype
      * @param int $level
      * @return Html
      */
-    private function getNodes($item, $level)
+    public function getNodes($item, $level)
     {
         $html = '';
         
