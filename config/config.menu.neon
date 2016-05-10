@@ -1,6 +1,30 @@
 services:
-    - Wame\MenuModule\Models\MenuBuilder
-    - Wame\MenuModule\Models\Prototype\ItemPrototype
-    - Wame\MenuModule\Models\ItemSorter
-    - Wame\MenuModule\Components\MenuControl
-    - Wame\MenuModule\Components\IMenuControlFactory
+	- Wame\MenuModule\Models\MenuBuilder
+	- Wame\MenuModule\Models\Prototype\ItemPrototype
+	- Wame\MenuModule\Models\ItemSorter
+	- Wame\MenuModule\Components\MenuControl
+	- Wame\MenuModule\Components\IMenuControlFactory
+
+
+	# Entities
+	- Wame\MenuModule\Entities\MenuEntity
+	- Wame\MenuModule\Entities\MenuLangEntity
+
+	# Repositories
+	- Wame\MenuModule\Repositories\MenuRepository
+
+
+	MenuManager:
+		class: Wame\MenuModule\Models\MenuManager
+
+
+	MenuItemForm:
+		class: Wame\MenuModule\Forms\MenuItemForm
+		setup:
+			- addFormContainer(Wame\MenuModule\Forms\BasicFormContainer(), 'BasicFormContainer', 100)
+			- addFormContainer(Wame\MenuModule\Forms\AdvancedFormContainer(), 'AdvancedFormContainer', 10)
+
+
+doctrine:
+	metadata:
+		Wame\MenuModule\Entities: %appDir%/../vendor/wame/MenuModule/entities

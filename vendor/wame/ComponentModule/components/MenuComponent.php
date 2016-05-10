@@ -9,7 +9,7 @@ interface IMenuComponentFactory
 }
 
 
-class MenuComponent implements \Wame\MenuModule\Models\IMenuItem
+class MenuComponent implements \Wame\MenuModule\Models\IComponent
 {	
 	/** @var \Nette\Application\LinkGenerator */
 	private $linkGenerator;
@@ -31,6 +31,12 @@ class MenuComponent implements \Wame\MenuModule\Models\IMenuItem
 		$item->setIcon('fa fa-list');
 		
 		return $item->getItem();
+	}
+	
+	
+	public function getLink()
+	{
+		return $this->linkGenerator->link('Admin:Menu:view');
 	}
 	
 }

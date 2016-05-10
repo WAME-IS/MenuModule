@@ -1,0 +1,9 @@
+{block content}
+	<div class="page-header">
+		<h1>{$siteTitle}</h1>
+	</div>
+	
+	<p>{_'Do you really want to delete this menu item?'}</p>
+	
+	<a class="btn btn-danger" n:href="DeleteItem!">{_'Delete'}</a>
+	<a class="btn btn-default" n:href=":Admin:Menu:view, 'id' => $menuId">{_'Cancel'}</a>

@@ -112,7 +112,7 @@ class MenuBuilder
         foreach ($this->providers as $provider) {
             $items = array_merge($provider->getItems(), $items);
         }
-        
+
         $itemPrototype = new \Wame\MenuModule\Models\Prototype\ItemPrototype();
 
         return $itemPrototype->process($this->item, $items, $this->itemTemplate);

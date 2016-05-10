@@ -10,3 +10,10 @@ services:
 			- allow('moderator', 'admin.menu', 'update')
 			- addResourceAction('admin.menu', 'delete')
 			- allow('moderator', 'admin.menu', 'delete')
+			- addResourceAction('admin.menu', 'addItem')
+			- allow('moderator', 'admin.menu', 'addItem')
+			- addResourceAction('admin.menu', 'deleteItem')
+			- allow('moderator', 'admin.menu', 'deleteItem')
+
+
+	- Wame\MenuModule\Vendor\Wame\AdminModule\Components\AddMenuItem\ItemTemplate

@@ -23,13 +23,13 @@ class MenuFormListener extends Object
 	
 	public function onCreate($form, $values, $componentEntity) 
 	{
-		$this->updateSettings($componentEntity, $values);
+		$this->updateParameters($componentEntity, $values);
 	}
 	
 	
 	public function onUpdate($form, $values, $componentEntity)
 	{
-		$this->updateSettings($componentEntity, $values);
+		$this->updateParameters($componentEntity, $values);
 	}
 	
 	
@@ -39,13 +39,13 @@ class MenuFormListener extends Object
 	}
 	
 	
-	private function updateSettings($componentEntity, $values)
+	private function updateParameters($componentEntity, $values)
 	{
-		$settings = $componentEntity->settings;
+		$parameters = $componentEntity->parameters;
 
-		$settings['class'] = $values['class'];
+		$parameters['class'] = $values['class'];
 
-		$componentEntity->settings = $settings;
+		$componentEntity->parameters = $parameters;
 		
 		return $componentEntity;
 	}
