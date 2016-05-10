@@ -4,6 +4,8 @@ services:
 	- Wame\MenuModule\Models\ItemSorter
 	- Wame\MenuModule\Components\MenuControl
 	- Wame\MenuModule\Components\IMenuControlFactory
+	- Wame\MenuModule\Models\DatabaseMenuProvider
+	- Wame\MenuModule\Models\MenuItemProcessor
 
 
 	# Entities
