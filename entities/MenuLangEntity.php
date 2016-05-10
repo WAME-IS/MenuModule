@@ -44,10 +44,10 @@ class MenuLangEntity extends \Wame\Core\Entities\BaseEntity
 	
 	public function getItemTitle()
 	{
-		if ($this->alternativeTitle) {
-			return $this->alternativeTitle;
+		if ($this->getAlternativeTitle()) {
+			return $this->getAlternativeTitle();
 		} else {
-			return $this->title;
+			return $this->getTitle();
 		}
 	}
 	
