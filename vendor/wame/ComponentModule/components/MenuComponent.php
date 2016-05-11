@@ -2,6 +2,11 @@
 
 namespace Wame\MenuModule\Vendor\Wame\ComponentModule;
 
+use Nette\Application\LinkGenerator;
+use Wame\MenuModule\Models\Item;
+use Wame\MenuModule\Components\IMenuControlFactory;
+use Wame\MenuModule\Models\DatabaseMenuProvider;
+
 interface IMenuComponentFactory
 {
 	/** @return MenuComponent */
@@ -11,20 +16,30 @@ interface IMenuComponentFactory
 
 class MenuComponent implements \Wame\MenuModule\Models\IComponent
 {	
-	/** @var \Nette\Application\LinkGenerator */
+	/** @var LinkGenerator */
 	private $linkGenerator;
+
+	/** @var IMenuControlFactory */
+	private $IMenuControlFactory;
+
+	/** @var DatabaseMenuProvider */
+	private $databaseMenuProvider;
 
 	
 	public function __construct(
-		\Nette\Application\LinkGenerator $linkGenerator
+		LinkGenerator $linkGenerator,
+		IMenuControlFactory $IMenuControlFactory,
+		DatabaseMenuProvider $databaseMenuProvider
 	) {
 		$this->linkGenerator = $linkGenerator;
+		$this->IMenuControlFactory = $IMenuControlFactory;
+		$this->databaseMenuProvider = $databaseMenuProvider;
 	}
 	
 	
 	public function addItem()
 	{
-		$item = new \Wame\MenuModule\Models\Item();
+		$item = new Item();
 		$item->setName('menu');
 		$item->setTitle(_('Menu'));
 		$item->setLink($this->linkGenerator->link('Admin:Menu:create'));
@@ -37,6 +52,16 @@ class MenuComponent implements \Wame\MenuModule\Models\IComponent
 	public function getLink()
 	{
 		return $this->linkGenerator->link('Admin:Menu:view');
+	}
+	
+	
+	public function createComponent($componentInPosition)
+	{
+		$control = $this->IMenuControlFactory->create();
+		$control->addProvider($this->databaseMenuProvider->setName($componentInPosition->component->name));
+		$control->setComponentInPosition($componentInPosition);
+		
+		return $control;
 	}
 	
 }

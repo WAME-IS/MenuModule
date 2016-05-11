@@ -135,7 +135,7 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 		$form = $this->componentForm
 						->setType('MenuComponent')
 						->setId($this->id)
-						->addFormContainer(new \Wame\MenuModule\Forms\ComponentFormContainer(), 'ComponentFormContainer', 0)
+//						->addFormContainer(new \Wame\MenuModule\Forms\ComponentFormContainer(), 'ComponentFormContainer', 0)
 						->build();
 
 		return $form;
