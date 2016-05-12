@@ -1,4 +1,21 @@
 services:
+	PermissionObject:
+		setup:
+			- addResource('menu')
+			- addResourceAction('menu', 'view')
+			- allow('moderator', 'menu', 'view')
+			- addResourceAction('menu', 'create')
+			- allow('moderator', 'menu', 'create')
+			- addResourceAction('menu', 'update')
+			- allow('moderator', 'menu', 'update')
+			- addResourceAction('menu', 'delete')
+			- allow('moderator', 'menu', 'delete')
+			- addResourceAction('menu', 'addItem')
+			- allow('moderator', 'menu', 'addItem')
+			- addResourceAction('menu', 'deleteItem')
+			- allow('moderator', 'menu', 'deleteItem')
+
+
 	- Wame\MenuModule\Models\MenuBuilder
 	- Wame\MenuModule\Models\Prototype\ItemPrototype
 	- Wame\MenuModule\Models\ItemSorter
