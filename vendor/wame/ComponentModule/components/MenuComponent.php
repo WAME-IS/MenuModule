@@ -14,7 +14,7 @@ interface IMenuComponentFactory
 }
 
 
-class MenuComponent implements \Wame\MenuModule\Models\IComponent
+class MenuComponent implements \Wame\ComponentModule\Models\IComponent
 {	
 	/** @var LinkGenerator */
 	private $linkGenerator;
@@ -49,9 +49,9 @@ class MenuComponent implements \Wame\MenuModule\Models\IComponent
 	}
 	
 	
-	public function getLink()
+	public function getLink($componentEntity)
 	{
-		return $this->linkGenerator->link('Admin:Menu:view');
+		return $this->linkGenerator->link('Admin:Menu:', ['id' => $componentEntity->id]);
 	}
 	
 	

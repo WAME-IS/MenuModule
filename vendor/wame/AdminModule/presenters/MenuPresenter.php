@@ -42,9 +42,9 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 	public $positionRepository;
 
 	
-	public function actionView()
+	public function actionDefault()
 	{
-		if (!$this->user->isAllowed('admin.menu', 'view')) {
+		if (!$this->user->isAllowed('menu', 'view')) {
 			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
 			$this->redirect(':Admin:Dashboard:');
 		}
@@ -70,7 +70,7 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 	
 	public function actionCreate()
 	{
-		if (!$this->user->isAllowed('admin.menu', 'create')) {
+		if (!$this->user->isAllowed('menu', 'create')) {
 			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
 			$this->redirect(':Admin:Dashboard:');
 		}
@@ -97,7 +97,7 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 	
 	public function actionUpdate()
 	{
-		if (!$this->user->isAllowed('admin.menu', 'update')) {
+		if (!$this->user->isAllowed('menu', 'update')) {
 			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
 			$this->redirect(':Admin:Dashboard:');
 		}
@@ -106,7 +106,7 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 	
 	public function actionDeleteItem()
 	{
-		if (!$this->user->isAllowed('admin.menu', 'deleteItem')) {
+		if (!$this->user->isAllowed('menu', 'deleteItem')) {
 			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
 			$this->redirect(':Admin:Dashboard:');
 		}
@@ -161,7 +161,7 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 	}
 	
 	
-	public function renderView()
+	public function renderDefault()
 	{
 		$showing = $this->getParameter('s');
 		
@@ -203,7 +203,7 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 	 */
 	public function handleDeleteItem()
 	{
-		if (!$this->user->isAllowed('admin.menu', 'deleteItem')) {
+		if (!$this->user->isAllowed('menu', 'deleteItem')) {
 			$this->flashMessage(_('For this action you do not have enough privileges.'), 'danger');
 			$this->redirect(':Admin:Dashboard:');	
 		}
@@ -211,7 +211,7 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 		$this->menuRepository->delete(['id' => $this->id]);
 		
 		$this->flashMessage(_('Menu item has been successfully deleted.'), 'success');
-		$this->redirect(':Admin:Menu:view', ['id' => $this->item->component->id]);
+		$this->redirect(':Admin:Menu:', ['id' => $this->item->component->id]);
 	}
 	
 }

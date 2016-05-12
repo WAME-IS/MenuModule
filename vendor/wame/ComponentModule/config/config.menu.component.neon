@@ -2,6 +2,3 @@ services:
 	ComponentManager:
 		setup:
 			- addComponent(Wame\MenuModule\Vendor\Wame\ComponentModule\MenuComponent())
-
-
-	- {class: Wame\MenuModule\Vendor\Wame\ComponentModule\Events\MenuFormListener, tags: [run]}
