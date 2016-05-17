@@ -117,7 +117,7 @@ class MenuItemForm extends FormFactory
 				$presenter->flashMessage(_('The menu item was successfully created.'), 'success');
 			}
 
-			$presenter->redirect(':Admin:Menu:view', ['id' => $this->menuId]);
+			$presenter->redirect(':Admin:Menu:', ['id' => $this->menuId]);
 		} catch (\Exception $e) {
 			if ($e instanceof \Nette\Application\AbortException) {
 				throw $e;
