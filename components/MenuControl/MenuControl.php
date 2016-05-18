@@ -98,14 +98,10 @@ class MenuControl extends \App\Core\Components\BaseControl
 	public function render()
 	{
         $this->menuBuilder->setProviders($this->providers);
-        
-		if ($this->templateFile) {
-			$this->template->setFile($this->templateFile);
-		} else {
-			$this->template->setFile(__DIR__ . '/MenuControl.latte');
-		}
-
+		
 		$this->template->menu = $this->menuBuilder->create();
+		
+		$this->getTemplateFile();
 		$this->template->render();
 	}
 
