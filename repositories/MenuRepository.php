@@ -137,6 +137,7 @@ class MenuRepository extends \Wame\Core\Repositories\BaseRepository
 		return $return;
 	}
 	
+	
 	/**
 	 * Get active items
 	 * 
@@ -146,11 +147,11 @@ class MenuRepository extends \Wame\Core\Repositories\BaseRepository
 	public function getItems($component, $showing = null, $orderBy = null, $limit = null, $offset = null)
 	{
 		$criteria = ['component' => $component, 'status' => self::STATUS_ACTIVE];
-		
-		if ($showing == 1) {
-			$criteria['showing !='] = self::SHOWING_NOT_LOGGED;
-		} else {
+
+		if ($showing == 0 && $showing != null) {
 			$criteria['showing !='] = self::SHOWING_LOGGED;
+		} elseif ($showing == 1) {
+			$criteria['showing !='] = self::SHOWING_NOT_LOGGED;
 		}
 		
 		return $this->find($criteria, $orderBy, $limit, $offset);
