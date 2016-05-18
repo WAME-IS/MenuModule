@@ -109,8 +109,12 @@ class MenuBuilder
     {
         $items = [];
 
-        foreach ($this->providers as $provider) {
-            $items = array_merge($provider->getItems(), $items);
+        foreach ($this->providers as $name => $provider) {
+			if (is_numeric($name)) {
+				$name = null;
+			}
+			
+            $items = array_merge($provider->getItems($name), $items);
         }
 
         $itemPrototype = new \Wame\MenuModule\Models\Prototype\ItemPrototype();

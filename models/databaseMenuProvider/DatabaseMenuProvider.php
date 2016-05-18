@@ -52,15 +52,31 @@ class DatabaseMenuProvider implements IMenuProvider
 		return $this;
 	}
 	
+	
+	/**
+	 * Get component name
+	 * 
+	 * @return string
+	 */
+	public function getName()
+	{
+		return $this->name;
+	}
+	
 
     /**
      * Get menu items from database
      * 
+	 * @param string $name
      * @return array
      */
-    public function getItems()
+    public function getItems($name = null)
     {
-		$component = $this->componentRepository->get(['name' => $this->name]);
+		if ($name) {
+			$this->setName($name);
+		}
+
+		$component = $this->componentRepository->get(['name' => $this->getName()]);
 		
 		if ($this->user->isLoggedIn()) {
 			$showing = 1;
