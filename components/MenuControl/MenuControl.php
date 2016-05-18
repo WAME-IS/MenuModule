@@ -15,7 +15,7 @@ interface IMenuControlFactory
 class MenuControl extends \App\Core\Components\BaseControl
 {	
 	/** @var MenuBuilder */
-    private $menuBuilder;
+    public $menuBuilder;
     
 	/** @var array */
     private $providers;
@@ -34,9 +34,9 @@ class MenuControl extends \App\Core\Components\BaseControl
      * 
      * @param class $provider
      */
-	public function addProvider($provider)
+	public function addProvider($provider, $name = null)
 	{
-        $this->providers[] = $provider;
+        $this->providers[$name] = $provider;
 	}
     
     /**

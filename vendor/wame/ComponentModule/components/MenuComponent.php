@@ -58,7 +58,7 @@ class MenuComponent implements \Wame\ComponentModule\Models\IComponent
 	public function createComponent($componentInPosition)
 	{
 		$control = $this->IMenuControlFactory->create();
-		$control->addProvider($this->databaseMenuProvider->setName($componentInPosition->component->name));
+		$control->addProvider($this->databaseMenuProvider->setName($componentInPosition->component->name), $componentInPosition->component->name);
 		$control->setComponentInPosition($componentInPosition);
 		
 		return $control;

@@ -170,6 +170,7 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 		$this->template->component = $this->component;
 		$this->template->items = $this->menuRepository->getItems($this->component, $showing);
 		$this->template->showing = $showing;
+		$this->template->showingList = $this->menuRepository->getShowingList();
 	}
 	
 	

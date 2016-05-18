@@ -10,8 +10,10 @@
 				<div class="col-sm-6">
 					{_'Showing'}
 					<div class="btn-group" role="group" aria-label="showing">
-						<a class="btn btn-default {$showing == null ? 'active'}" n:href="this, 's' => null">{_'Not logged'}</a>
-						<a class="btn btn-default {$showing ? 'active'}" n:href="this, 's' => 1">{_'Logged'}</a>
+						{dump $showing}
+						<a class="btn btn-default {$showing == null ? 'active'}" n:href="this, 's' => null">{_'All'}</a>
+						<a class="btn btn-default {$showing == 0 && $showing != null ? 'active'}" n:href="this, 's' => 0">{_'Not logged'}</a>
+						<a class="btn btn-default {$showing == 1 ? 'active'}" n:href="this, 's' => 1">{_'Logged'}</a>
 					</div>
 				</div>
 				
@@ -38,6 +40,7 @@
 							<th>#</th>
 							<th>{_'Type'}</th>
 							<th>{_'Title'}</th>
+							<th>{_'Showing'}</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -53,7 +56,11 @@
 							</td>
 
 							<td>
-								<div><a href="{$menuManager[$item->type]->getLinkUpdate($item)}">{$item->langs[$lang]->itemTitle}</a></div>
+								<a href="{$menuManager[$item->type]->getLinkUpdate($item)}">{$item->langs[$lang]->itemTitle}</a>
+							</td>
+
+							<td>
+								{$showingList[$item->showing]}
 							</td>
 
 							<td class="text-right">
