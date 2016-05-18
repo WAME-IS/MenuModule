@@ -2,9 +2,10 @@
 
 namespace Wame\MenuModule\Models;
 
+use Wame\MenuModule\Models\IMenuProvider;
 use Wame\MenuModule\Models\ItemSorter;
 
-class MenuManager
+class MenuManager implements IMenuProvider
 {	
 	/** @var array */
 	public $menuItemTypes = [];

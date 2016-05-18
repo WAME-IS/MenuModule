@@ -3,11 +3,12 @@
 namespace Wame\MenuModule\Models;
 
 use Nette\Security\User;
+use Wame\MenuModule\Models\IMenuProvider;
 use Wame\ComponentModule\Repositories\ComponentRepository;
 use Wame\MenuModule\Repositories\MenuRepository;
 use Wame\MenuModule\Models\MenuItemProcessor;
 
-class DatabaseMenuProvider
+class DatabaseMenuProvider implements IMenuProvider
 {	
 	/** @var User */
 	private $user;
