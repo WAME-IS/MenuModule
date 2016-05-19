@@ -132,6 +132,7 @@ class MenuControl extends \App\Core\Components\BaseControl
 	{
         $this->menuBuilder->setProviders($this->providers);
 		
+		$this->template->control = $this->menuBuilder;
 		$this->template->menu = $this->menuBuilder->create();
 		
 		$this->getTemplateFile();
