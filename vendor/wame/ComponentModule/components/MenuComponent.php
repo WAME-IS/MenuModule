@@ -96,7 +96,7 @@ class MenuComponent implements IComponent
 		$class = $this->getContainerClass($componentInPosition);
 		
 		if ($class) {
-			$control->getContainerPrototype()->addAttributes(['class' => $class]);
+			$control->getContainerPrototype()->class[] = $class;
 		}
 		
 		return $control;

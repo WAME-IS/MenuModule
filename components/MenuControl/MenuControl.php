@@ -21,14 +21,14 @@ class MenuControl extends \App\Core\Components\BaseControl
     private $providers;
         
 	
-    public function __construct(MenuBuilder $menuBuilder) 
+    public function __construct() 
     {
         parent::__construct();
         
-        $this->menuBuilder = $menuBuilder;
+        $this->menuBuilder = new MenuBuilder();
     }
 	
-	
+
     /**
      * Add provider
      * 
@@ -38,6 +38,40 @@ class MenuControl extends \App\Core\Components\BaseControl
 	{
         $this->providers[$name] = $provider;
 	}
+
+
+	/**
+	 * Get control prototype
+	 * 
+	 * @return Html
+	 */
+	public function getContainerPrototype()
+	{
+		return $this->menuBuilder->getContainerPrototype();
+	}
+	
+	
+	/**
+	 * Get list prototype
+	 * 
+	 * @return Html
+	 */
+	public function getListPrototype()
+	{
+		return $this->menuBuilder->getListPrototype();
+	}
+	
+	
+	/**
+	 * Get item prototype
+	 * 
+	 * @return Html
+	 */
+	public function getItemPrototype()
+	{
+		return $this->menuBuilder->getItemPrototype();
+	}
+
     
     /**
      * Set Html container prototype
@@ -95,46 +129,14 @@ class MenuControl extends \App\Core\Components\BaseControl
 	}
 	
 	
-	/**
-	 * Get control prototype
-	 * 
-	 * @return Html
-	 */
-	public function getContainerPrototype()
-	{
-		return $this->menuBuilder->container;
-	}
-	
-	
-	/**
-	 * Get list prototype
-	 * 
-	 * @return Html
-	 */
-	public function getListPrototype()
-	{
-		return $this->menuBuilder->list;
-	}
-	
-	
-	/**
-	 * Get item prototype
-	 * 
-	 * @return Html
-	 */
-	public function getItemPrototype()
-	{
-		return $this->menuBuilder->item;
-	}
-	
-	
 	public function render()
 	{
         $this->menuBuilder->setProviders($this->providers);
-		
-		$this->template->control = $this->menuBuilder;
+
+		$this->template->component = $this->componentInPosition->component;
+		$this->template->position = $this->componentInPosition->position;
 		$this->template->menu = $this->menuBuilder->create();
-		
+
 		$this->getTemplateFile();
 		$this->template->render();
 	}

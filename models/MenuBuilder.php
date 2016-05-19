@@ -29,6 +29,38 @@ class MenuBuilder
         $this->item = Html::el('li');
     }
     
+	/**
+	 * Get control prototype
+	 * 
+	 * @return Html
+	 */
+	public function getContainerPrototype()
+	{
+		return $this->container;
+	}
+	
+	
+	/**
+	 * Get list prototype
+	 * 
+	 * @return Html
+	 */
+	public function getListPrototype()
+	{
+		return $this->list;
+	}
+	
+	
+	/**
+	 * Get item prototype
+	 * 
+	 * @return Html
+	 */
+	public function getItemPrototype()
+	{
+		return $this->item;
+	}
+
 	
     /**
      * Set providers
@@ -98,39 +130,6 @@ class MenuBuilder
         
         return $this;
     }
-    
-	
-	/**
-	 * Get control prototype
-	 * 
-	 * @return Html
-	 */
-	public function getContainerPrototype()
-	{
-		return $this->container;
-	}
-	
-	
-	/**
-	 * Get list prototype
-	 * 
-	 * @return Html
-	 */
-	public function getListPrototype()
-	{
-		return $this->list;
-	}
-	
-	
-	/**
-	 * Get item prototype
-	 * 
-	 * @return Html
-	 */
-	public function getItemPrototype()
-	{
-		return $this->item;
-	}
 	
 	
 	/**
@@ -152,7 +151,7 @@ class MenuBuilder
 
         $itemPrototype = new \Wame\MenuModule\Models\Prototype\ItemPrototype();
 
-        return $itemPrototype->process($this->getItemPrototype(), $items, $this->itemTemplate);
+        return $itemPrototype->process($this->item, $items, $this->itemTemplate);
     }
 
 	
@@ -164,8 +163,8 @@ class MenuBuilder
     public function create()
     {
         $menu = new \stdClass();
-        $menu->container = $this->getContainerPrototype();
-        $menu->list = $this->getListPrototype();
+        $menu->container = $this->container;
+        $menu->list = $this->list;
         $menu->items = $this->getItems();
 
         return $menu;
