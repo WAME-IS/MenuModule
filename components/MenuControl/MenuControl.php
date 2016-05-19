@@ -95,6 +95,39 @@ class MenuControl extends \App\Core\Components\BaseControl
 	}
 	
 	
+	/**
+	 * Get control prototype
+	 * 
+	 * @return Html
+	 */
+	public function getContainerPrototype()
+	{
+		return $this->menuBuilder->container;
+	}
+	
+	
+	/**
+	 * Get list prototype
+	 * 
+	 * @return Html
+	 */
+	public function getListPrototype()
+	{
+		return $this->menuBuilder->list;
+	}
+	
+	
+	/**
+	 * Get item prototype
+	 * 
+	 * @return Html
+	 */
+	public function getItemPrototype()
+	{
+		return $this->menuBuilder->item;
+	}
+	
+	
 	public function render()
 	{
         $this->menuBuilder->setProviders($this->providers);

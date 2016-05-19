@@ -92,8 +92,30 @@ class MenuComponent implements IComponent
 		$control = $this->IMenuControlFactory->create();
 		$control->addProvider($this->databaseMenuProvider->setName($componentInPosition->component->name), $componentInPosition->component->name);
 		$control->setComponentInPosition($componentInPosition);
+
+		$class = $this->getContainerClass($componentInPosition);
+		
+		if ($class) {
+			$control->getContainerPrototype()->addAttributes(['class' => $class]);
+		}
 		
 		return $control;
+	}
+	
+	
+	private function getContainerClass($componentInPosition)
+	{
+		$class = null;
+		
+		if ($componentInPosition->component->getParameter('class')) {
+			$class = $componentInPosition->component->getParameter('class');
+		}
+
+		if ($componentInPosition->position->getParameter('class')) {
+			$class = $componentInPosition->position->getParameter('class');
+		}
+
+		return $class;
 	}
 	
 }

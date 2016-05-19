@@ -10,13 +10,13 @@ class MenuBuilder
     private $providers = [];
     
     /** @var Html */
-    private $container;
+    public $container;
     
     /** @var Html */
-    private $list;
+    public $list;
 
     /** @var Html */
-    private $item;
+    public $item;
 
     /** @var string */
     private $itemTemplate;
