@@ -1,7 +1,17 @@
 {block content}
 	<div class="page-header">
-		<h1>{$siteTitle}</h1>
-		<small n:if="$component->langs[$lang]->description" class="text-muted">{$component->langs[$lang]->description}</small>
+		<div class="row">
+			<div class="col-md-8">
+				<h1>{$siteTitle}</h1>
+				<small n:if="$component->langs[$lang]->description" class="text-muted">{$component->langs[$lang]->description}</small>
+			</div>
+			<div class="col-md-4 text-right">
+				<a class="btn btn-warning" n:href="Menu:edit">
+					<span class="fa fa-edit"></span>
+					{_'Edit'}
+				</a>
+			</div>
+		</div>
 	</div>
 	
 	<div class="row">
@@ -10,7 +20,6 @@
 				<div class="col-sm-6">
 					{_'Showing'}
 					<div class="btn-group" role="group" aria-label="showing">
-						{dump $showing}
 						<a class="btn btn-default {$showing == null ? 'active'}" n:href="this, 's' => null">{_'All'}</a>
 						<a class="btn btn-default {$showing == 0 && $showing != null ? 'active'}" n:href="this, 's' => 0">{_'Not logged'}</a>
 						<a class="btn btn-default {$showing == 1 ? 'active'}" n:href="this, 's' => 1">{_'Logged'}</a>
@@ -74,7 +83,7 @@
 		</div>
 		
 		<div class="col-md-4 col-lg-3">
-			{*control positionList*}
+			{control componentPositionList}
 		</div>
 	</div>
 	
