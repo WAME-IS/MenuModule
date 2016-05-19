@@ -133,8 +133,10 @@ class MenuControl extends \App\Core\Components\BaseControl
 	{
         $this->menuBuilder->setProviders($this->providers);
 
-		$this->template->component = $this->componentInPosition->component;
-		$this->template->position = $this->componentInPosition->position;
+		if ($this->componentInPosition) {
+			$this->template->component = $this->componentInPosition->component;
+			$this->template->position = $this->componentInPosition->position;
+		}
 		$this->template->menu = $this->menuBuilder->create();
 
 		$this->getTemplateFile();
