@@ -12,7 +12,7 @@ interface IMenuControlFactory
 }
 
 
-class MenuControl extends \App\Core\Components\BaseControl
+class MenuControl extends \Wame\Core\Components\BaseControl
 {	
 	/** @var MenuBuilder */
     public $menuBuilder;
