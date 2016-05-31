@@ -10,13 +10,13 @@ class MenuBuilder
     private $providers = [];
     
     /** @var Html */
-    public $container;
+    private $container;
     
     /** @var Html */
-    public $list;
+    private $list;
 
     /** @var Html */
-    public $item;
+    private $item;
 
     /** @var string */
     private $itemTemplate;
@@ -29,38 +29,6 @@ class MenuBuilder
         $this->item = Html::el('li');
     }
     
-	/**
-	 * Get control prototype
-	 * 
-	 * @return Html
-	 */
-	public function getContainerPrototype()
-	{
-		return $this->container;
-	}
-	
-	
-	/**
-	 * Get list prototype
-	 * 
-	 * @return Html
-	 */
-	public function getListPrototype()
-	{
-		return $this->list;
-	}
-	
-	
-	/**
-	 * Get item prototype
-	 * 
-	 * @return Html
-	 */
-	public function getItemPrototype()
-	{
-		return $this->item;
-	}
-
 	
     /**
      * Set providers
@@ -130,7 +98,7 @@ class MenuBuilder
         
         return $this;
     }
-	
+    
 	
 	/**
 	 * Get items

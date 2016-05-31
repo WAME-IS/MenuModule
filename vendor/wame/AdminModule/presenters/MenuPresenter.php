@@ -4,6 +4,7 @@ namespace App\AdminModule\Presenters;
 
 use Nette\Utils\Html;
 use Wame\ComponentModule\Forms\ComponentForm;
+use Wame\ComponentModule\Entities\ComponentEntity;
 use Wame\ComponentModule\Repositories\ComponentRepository;
 use Wame\MenuModule\Entities\MenuEntity;
 use Wame\MenuModule\Repositories\MenuRepository;
@@ -11,8 +12,11 @@ use Wame\MenuModule\Models\MenuManager;
 use Wame\MenuModule\Vendor\Wame\AdminModule\Components\AddMenuItem\ItemTemplate;
 use Wame\PositionModule\Repositories\PositionRepository;
 
-class MenuPresenter extends ComponentPresenter
-{
+class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
+{	
+	/** @var ComponentEntity */
+	private $component;
+	
 	/** @var MenuEntity */
 	private $item;
 	
@@ -42,12 +46,12 @@ class MenuPresenter extends ComponentPresenter
 	{
 		if (!$this->user->isAllowed('menu', 'view')) {
 			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
-			$this->redirect(':Admin:Dashboard:', ['id' => null]);
+			$this->redirect(':Admin:Dashboard:');
 		}
 		
 		if (!$this->id) {
 			$this->flashMessage(_('Missing identifier.'), 'danger');
-			$this->redirect(':Admin:Component:', ['id' => null]);
+			$this->redirect(':Admin:Component:');
 		}
 		
 		$this->component = $this->componentRepository->get(['id' => $this->id]);
@@ -68,7 +72,7 @@ class MenuPresenter extends ComponentPresenter
 	{
 		if (!$this->user->isAllowed('menu', 'create')) {
 			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
-			$this->redirect(':Admin:Dashboard:', ['id' => null]);
+			$this->redirect(':Admin:Dashboard:');
 		}
 		
 		if ($this->getParameter('p')) {
@@ -91,28 +95,11 @@ class MenuPresenter extends ComponentPresenter
 	}
 	
 	
-	public function actionEdit()
+	public function actionUpdate()
 	{
-		if (!$this->user->isAllowed('menu', 'edit')) {
+		if (!$this->user->isAllowed('menu', 'update')) {
 			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
-			$this->redirect(':Admin:Dashboard:', ['id' => null]);
-		}
-		
-		if (!$this->id) {
-			$this->flashMessage(_('Missing identifier.'), 'danger');
-			$this->redirect(':Admin:Component:', ['id' => null]);
-		}
-		
-		$this->component = $this->componentRepository->get(['id' => $this->id]);
-		
-		if (!$this->component) {
-			$this->flashMessage(_('This component does not exist.'), 'danger');
-			$this->redirect(':Admin:Component:', ['id' => null]);
-		}
-		
-		if ($this->component->status == ComponentRepository::STATUS_REMOVE) {
-			$this->flashMessage(_('This component is removed.'), 'danger');
-			$this->redirect(':Admin:Component:', ['id' => null]);
+			$this->redirect(':Admin:Dashboard:');
 		}
 	}
 	
@@ -121,7 +108,7 @@ class MenuPresenter extends ComponentPresenter
 	{
 		if (!$this->user->isAllowed('menu', 'deleteItem')) {
 			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
-			$this->redirect(':Admin:Dashboard:', ['id' => null]);
+			$this->redirect(':Admin:Dashboard:');
 		}
 		
 		$this->item = $this->menuRepository->get(['id' => $this->id]);
@@ -148,6 +135,7 @@ class MenuPresenter extends ComponentPresenter
 		$form = $this->componentForm
 						->setType('MenuComponent')
 						->setId($this->id)
+//						->addFormContainer(new \Wame\MenuModule\Forms\ComponentFormContainer(), 'ComponentFormContainer', 0)
 						->build();
 
 		return $form;
@@ -192,10 +180,9 @@ class MenuPresenter extends ComponentPresenter
 	}
 	
 	
-	public function renderEdit()
+	public function renderUpdate()
 	{
 		$this->template->siteTitle = _('Edit menu');
-		$this->template->componentTitle = $this->component->langs[$this->lang]->title;
 	}
 	
 	
@@ -219,7 +206,7 @@ class MenuPresenter extends ComponentPresenter
 	{
 		if (!$this->user->isAllowed('menu', 'deleteItem')) {
 			$this->flashMessage(_('For this action you do not have enough privileges.'), 'danger');
-			$this->redirect(':Admin:Dashboard:', ['id' => null]);	
+			$this->redirect(':Admin:Dashboard:');	
 		}
 		
 		$this->menuRepository->delete(['id' => $this->id]);

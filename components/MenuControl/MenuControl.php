@@ -12,7 +12,7 @@ interface IMenuControlFactory
 }
 
 
-class MenuControl extends \Wame\Core\Components\BaseControl
+class MenuControl extends \App\Core\Components\BaseControl
 {	
 	/** @var MenuBuilder */
     public $menuBuilder;
@@ -21,14 +21,14 @@ class MenuControl extends \Wame\Core\Components\BaseControl
     private $providers;
         
 	
-    public function __construct() 
+    public function __construct(MenuBuilder $menuBuilder) 
     {
         parent::__construct();
         
-        $this->menuBuilder = new MenuBuilder();
+        $this->menuBuilder = $menuBuilder;
     }
 	
-
+	
     /**
      * Add provider
      * 
@@ -38,40 +38,6 @@ class MenuControl extends \Wame\Core\Components\BaseControl
 	{
         $this->providers[$name] = $provider;
 	}
-
-
-	/**
-	 * Get control prototype
-	 * 
-	 * @return Html
-	 */
-	public function getContainerPrototype()
-	{
-		return $this->menuBuilder->getContainerPrototype();
-	}
-	
-	
-	/**
-	 * Get list prototype
-	 * 
-	 * @return Html
-	 */
-	public function getListPrototype()
-	{
-		return $this->menuBuilder->getListPrototype();
-	}
-	
-	
-	/**
-	 * Get item prototype
-	 * 
-	 * @return Html
-	 */
-	public function getItemPrototype()
-	{
-		return $this->menuBuilder->getItemPrototype();
-	}
-
     
     /**
      * Set Html container prototype
@@ -132,14 +98,14 @@ class MenuControl extends \Wame\Core\Components\BaseControl
 	public function render()
 	{
         $this->menuBuilder->setProviders($this->providers);
-
-		if ($this->componentInPosition) {
-			$this->template->component = $this->componentInPosition->component;
-			$this->template->position = $this->componentInPosition->position;
+        
+		if ($this->templateFile) {
+			$this->template->setFile($this->templateFile);
+		} else {
+			$this->template->setFile(__DIR__ . '/MenuControl.latte');
 		}
-		$this->template->menu = $this->menuBuilder->create();
 
-		$this->getTemplateFile();
+		$this->template->menu = $this->menuBuilder->create();
 		$this->template->render();
 	}
 
