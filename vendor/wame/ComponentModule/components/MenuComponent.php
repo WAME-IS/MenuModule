@@ -3,6 +3,7 @@
 namespace Wame\MenuModule\Vendor\Wame\ComponentModule;
 
 use Nette\Application\LinkGenerator;
+use Wame\ComponentModule\Models\IComponent;
 use Wame\MenuModule\Models\Item;
 use Wame\MenuModule\Components\IMenuControlFactory;
 use Wame\MenuModule\Models\DatabaseMenuProvider;
@@ -14,7 +15,7 @@ interface IMenuComponentFactory
 }
 
 
-class MenuComponent implements \Wame\ComponentModule\Models\IComponent
+class MenuComponent implements IComponent
 {	
 	/** @var LinkGenerator */
 	private $linkGenerator;
@@ -40,16 +41,47 @@ class MenuComponent implements \Wame\ComponentModule\Models\IComponent
 	public function addItem()
 	{
 		$item = new Item();
-		$item->setName('menu');
-		$item->setTitle(_('Menu'));
-		$item->setLink($this->linkGenerator->link('Admin:Menu:create'));
-		$item->setIcon('fa fa-list');
+		$item->setName($this->getName());
+		$item->setTitle($this->getTitle());
+		$item->setDescription($this->getDescription());
+		$item->setLink($this->getLinkCreate());
+		$item->setIcon($this->getIcon());
 		
 		return $item->getItem();
 	}
 	
 	
-	public function getLink($componentEntity)
+	public function getName()
+	{
+		return 'menu';
+	}
+	
+	
+	public function getTitle()
+	{
+		return _('Menu');
+	}
+	
+	
+	public function getDescription()
+	{
+		return _('Create tree menu');
+	}
+	
+	
+	public function getIcon()
+	{
+		return 'fa fa-list';
+	}
+	
+	
+	public function getLinkCreate()
+	{
+		return $this->linkGenerator->link('Admin:Menu:create');
+	}
+
+	
+	public function getLinkDetail($componentEntity)
 	{
 		return $this->linkGenerator->link('Admin:Menu:', ['id' => $componentEntity->id]);
 	}
@@ -60,8 +92,30 @@ class MenuComponent implements \Wame\ComponentModule\Models\IComponent
 		$control = $this->IMenuControlFactory->create();
 		$control->addProvider($this->databaseMenuProvider->setName($componentInPosition->component->name), $componentInPosition->component->name);
 		$control->setComponentInPosition($componentInPosition);
+
+		$class = $this->getContainerClass($componentInPosition);
+		
+		if ($class) {
+			$control->getContainerPrototype()->class[] = $class;
+		}
 		
 		return $control;
+	}
+	
+	
+	private function getContainerClass($componentInPosition)
+	{
+		$class = null;
+		
+		if ($componentInPosition->component->getParameter('class')) {
+			$class = $componentInPosition->component->getParameter('class');
+		}
+
+		if ($componentInPosition->position->getParameter('class')) {
+			$class = $componentInPosition->position->getParameter('class');
+		}
+
+		return $class;
 	}
 	
 }

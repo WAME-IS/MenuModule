@@ -4,7 +4,6 @@ namespace App\AdminModule\Presenters;
 
 use Nette\Utils\Html;
 use Wame\ComponentModule\Forms\ComponentForm;
-use Wame\ComponentModule\Entities\ComponentEntity;
 use Wame\ComponentModule\Repositories\ComponentRepository;
 use Wame\MenuModule\Entities\MenuEntity;
 use Wame\MenuModule\Repositories\MenuRepository;
@@ -12,11 +11,8 @@ use Wame\MenuModule\Models\MenuManager;
 use Wame\MenuModule\Vendor\Wame\AdminModule\Components\AddMenuItem\ItemTemplate;
 use Wame\PositionModule\Repositories\PositionRepository;
 
-class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
-{	
-	/** @var ComponentEntity */
-	private $component;
-	
+class MenuPresenter extends ComponentPresenter
+{
 	/** @var MenuEntity */
 	private $item;
 	
@@ -46,12 +42,12 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 	{
 		if (!$this->user->isAllowed('menu', 'view')) {
 			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
-			$this->redirect(':Admin:Dashboard:');
+			$this->redirect(':Admin:Dashboard:', ['id' => null]);
 		}
 		
 		if (!$this->id) {
 			$this->flashMessage(_('Missing identifier.'), 'danger');
-			$this->redirect(':Admin:Component:');
+			$this->redirect(':Admin:Component:', ['id' => null]);
 		}
 		
 		$this->component = $this->componentRepository->get(['id' => $this->id]);
@@ -72,7 +68,7 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 	{
 		if (!$this->user->isAllowed('menu', 'create')) {
 			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
-			$this->redirect(':Admin:Dashboard:');
+			$this->redirect(':Admin:Dashboard:', ['id' => null]);
 		}
 		
 		if ($this->getParameter('p')) {
@@ -95,11 +91,28 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 	}
 	
 	
-	public function actionUpdate()
+	public function actionEdit()
 	{
-		if (!$this->user->isAllowed('menu', 'update')) {
+		if (!$this->user->isAllowed('menu', 'edit')) {
 			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
-			$this->redirect(':Admin:Dashboard:');
+			$this->redirect(':Admin:Dashboard:', ['id' => null]);
+		}
+		
+		if (!$this->id) {
+			$this->flashMessage(_('Missing identifier.'), 'danger');
+			$this->redirect(':Admin:Component:', ['id' => null]);
+		}
+		
+		$this->component = $this->componentRepository->get(['id' => $this->id]);
+		
+		if (!$this->component) {
+			$this->flashMessage(_('This component does not exist.'), 'danger');
+			$this->redirect(':Admin:Component:', ['id' => null]);
+		}
+		
+		if ($this->component->status == ComponentRepository::STATUS_REMOVE) {
+			$this->flashMessage(_('This component is removed.'), 'danger');
+			$this->redirect(':Admin:Component:', ['id' => null]);
 		}
 	}
 	
@@ -108,7 +121,7 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 	{
 		if (!$this->user->isAllowed('menu', 'deleteItem')) {
 			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
-			$this->redirect(':Admin:Dashboard:');
+			$this->redirect(':Admin:Dashboard:', ['id' => null]);
 		}
 		
 		$this->item = $this->menuRepository->get(['id' => $this->id]);
@@ -135,7 +148,6 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 		$form = $this->componentForm
 						->setType('MenuComponent')
 						->setId($this->id)
-//						->addFormContainer(new \Wame\MenuModule\Forms\ComponentFormContainer(), 'ComponentFormContainer', 0)
 						->build();
 
 		return $form;
@@ -180,9 +192,10 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 	}
 	
 	
-	public function renderUpdate()
+	public function renderEdit()
 	{
 		$this->template->siteTitle = _('Edit menu');
+		$this->template->componentTitle = $this->component->langs[$this->lang]->title;
 	}
 	
 	
@@ -206,7 +219,7 @@ class MenuPresenter extends \App\AdminModule\Presenters\BasePresenter
 	{
 		if (!$this->user->isAllowed('menu', 'deleteItem')) {
 			$this->flashMessage(_('For this action you do not have enough privileges.'), 'danger');
-			$this->redirect(':Admin:Dashboard:');	
+			$this->redirect(':Admin:Dashboard:', ['id' => null]);	
 		}
 		
 		$this->menuRepository->delete(['id' => $this->id]);
