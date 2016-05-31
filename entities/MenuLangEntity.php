@@ -13,6 +13,7 @@ class MenuLangEntity extends \Wame\Core\Entities\BaseEntity
 {
 	use Columns\Identifier;
 	use Columns\EditDate;
+	use Columns\EditUser;
 	use Columns\Lang;
 	use Columns\Title;
 	use Columns\Slug;
