@@ -1,9 +1,0 @@
-
-{extends 'default.latte'}
-
-{block customization}
-	{?
-		$menu->container->setName('');
-		$menu->list->class[] = 'nav navbar-nav ' . $component->getParameter('class');
-	}
-{/block}
