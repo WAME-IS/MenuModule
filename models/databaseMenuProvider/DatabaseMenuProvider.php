@@ -81,9 +81,9 @@ class DatabaseMenuProvider implements IMenuProvider
 		if ($this->user->isLoggedIn()) {
 			$showing = 1;
 		} else {
-			$showing = null;
+			$showing = 0;
 		}
-		
+
 		$items = $this->menuRepository->getItems($component, $showing);
 		
         return $this->menuItemProcessor->process($items);

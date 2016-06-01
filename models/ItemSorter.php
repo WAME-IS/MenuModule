@@ -19,8 +19,8 @@ class ItemSorter
 		foreach ($services as $service) {
             $item = $service->addItem();
 			
-			if (array_key_exists($item->name, $items)) {
-				$items[$item->name] = (object) Arrays::mergeTree((array) $item, (array) $items[$item->name]);
+			if (isset($items[$item->name])) {
+				$items[$item->name] = (object) Arrays::mergeTree((array) $items[$item->name], (array) $item);
 			} else {
 				$items[$item->name] = $item;
 			}
