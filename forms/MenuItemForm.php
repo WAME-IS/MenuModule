@@ -50,7 +50,7 @@ class MenuItemForm extends FormFactory
 	private $type;
 	
 	/** @var string */
-	private $actionForm;
+	public $actionForm;
 	
 	
 	public function __construct(
