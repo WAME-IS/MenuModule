@@ -41,7 +41,7 @@ class MenuPresenter extends ComponentPresenter
 	public function actionDefault()
 	{
 		if (!$this->user->isAllowed('menu', 'view')) {
-			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
+			$this->flashMessage(_('To enter this section you do not have enough privileges.'), 'danger');
 			$this->redirect(':Admin:Dashboard:', ['id' => null]);
 		}
 		
@@ -67,7 +67,7 @@ class MenuPresenter extends ComponentPresenter
 	public function actionCreate()
 	{
 		if (!$this->user->isAllowed('menu', 'create')) {
-			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
+			$this->flashMessage(_('To enter this section you do not have enough privileges.'), 'danger');
 			$this->redirect(':Admin:Dashboard:', ['id' => null]);
 		}
 		
@@ -94,7 +94,7 @@ class MenuPresenter extends ComponentPresenter
 	public function actionEdit()
 	{
 		if (!$this->user->isAllowed('menu', 'edit')) {
-			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
+			$this->flashMessage(_('To enter this section you do not have enough privileges.'), 'danger');
 			$this->redirect(':Admin:Dashboard:', ['id' => null]);
 		}
 		
@@ -120,7 +120,7 @@ class MenuPresenter extends ComponentPresenter
 	public function actionDeleteItem()
 	{
 		if (!$this->user->isAllowed('menu', 'deleteItem')) {
-			$this->flashMessage(_('To enter this section you do not have have enough privileges.'), 'danger');
+			$this->flashMessage(_('To enter this section you do not have enough privileges.'), 'danger');
 			$this->redirect(':Admin:Dashboard:', ['id' => null]);
 		}
 		
