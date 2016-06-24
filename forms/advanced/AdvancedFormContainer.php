@@ -5,6 +5,7 @@ namespace Wame\MenuModule\Forms;
 use Wame\DynamicObject\Forms\BaseFormContainer;
 use Wame\MenuModule\Repositories\MenuRepository;
 
+
 interface IAdvancedFormContainerFactory
 {
 	/** @return AdvancedFormContainer */
@@ -16,20 +17,15 @@ class AdvancedFormContainer extends BaseFormContainer
 {
 	/** @var MenuRepository */
 	private $menuRepository;
-	
+
+
 	public function __construct(MenuRepository $menuRepository) {
 		parent::__construct();
 		
 		$this->menuRepository = $menuRepository;
 	}
-	
-    public function render() 
-	{
-        $this->template->_form = $this->getForm();
-        $this->template->render(__DIR__ . '/default.latte');
-    }
 
-	
+
     protected function configure() 
 	{		
 		$form = $this->getForm();
@@ -48,8 +44,8 @@ class AdvancedFormContainer extends BaseFormContainer
 				->setDefaultValue(BaseFormContainer::SWITCH_NO)
 				->getSeparatorPrototype()->setName(null);
     }
-	
-	
+
+
 	public function setDefaultValues($object)
 	{
 		$form = $this->getForm();
@@ -70,5 +66,5 @@ class AdvancedFormContainer extends BaseFormContainer
 			$form['only_icon']->setDefaultValue($parameters['only_icon']);
 		}
 	}
-	
+
 }
