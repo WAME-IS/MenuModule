@@ -3,13 +3,15 @@
 namespace Wame\MenuModule\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use Wame\ComponentModule\Entities\ComponentEntity;
 use Wame\Core\Entities\Columns;
+use Wame\Core\Entities\TranslatableEntity;
 
 /**
  * @ORM\Table(name="wame_menu")
  * @ORM\Entity
  */
-class MenuEntity extends \Wame\Core\Entities\BaseEntity 
+class MenuEntity extends TranslatableEntity
 {
 	use Columns\Identifier;
 	use Columns\CreateDate;
@@ -23,7 +25,7 @@ class MenuEntity extends \Wame\Core\Entities\BaseEntity
     protected $langs;
 
 	/**
-     * @ORM\ManyToOne(targetEntity="\Wame\ComponentModule\Entities\ComponentEntity", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="ComponentEntity", inversedBy="id")
      * @ORM\JoinColumn(name="component_id", referencedColumnName="id", nullable=false)
      */
     protected $component;

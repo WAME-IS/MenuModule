@@ -142,7 +142,7 @@ class MenuItemForm extends FormFactory
 		$menuEntity = new MenuEntity();
 		$menuEntity->setType($this->getType());
 		$menuEntity->setComponent($componentEntity);
-		$menuEntity->setCreateDate($this->formatDate('now'));
+		$menuEntity->setCreateDate(\Wame\Utils\Date::toDateTime('now'));
 		$menuEntity->setCreateUser($this->userEntity);
 		$menuEntity->setStatus(MenuRepository::STATUS_ACTIVE);
 		$menuEntity->setShowing($this->getShowing($values));
@@ -151,7 +151,7 @@ class MenuItemForm extends FormFactory
 		$menuLangEntity = new MenuLangEntity();
 		$menuLangEntity->item = $menuEntity;
 		$menuLangEntity->setLang($this->lang);
-		$menuLangEntity->setEditDate($this->formatDate('now'));
+		$menuLangEntity->setEditDate(\Wame\Utils\Date::toDateTime('now'));
 		$menuLangEntity->setEditUser($this->userEntity);
 
 		$menuEntity->addLang($this->lang, $menuLangEntity);
@@ -173,7 +173,7 @@ class MenuItemForm extends FormFactory
 		$menuEntity->setParameters($this->getItemParameters($values, $menuEntity->parameters));
 		
 		$menuLangEntity = $menuEntity->langs[$this->lang];
-		$menuLangEntity->setEditDate($this->formatDate('now'));
+		$menuLangEntity->setEditDate(\Wame\Utils\Date::toDateTime('now'));
 		$menuLangEntity->setEditUser($this->userEntity);
 		
 		return $this->menuRepository->update($menuEntity);

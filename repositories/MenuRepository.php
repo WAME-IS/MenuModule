@@ -2,10 +2,16 @@
 
 namespace Wame\MenuModule\Repositories;
 
+use h4kuna\Gettext\GettextSetup;
+use Kdyby\Doctrine\EntityManager;
+use Nette\DI\Container;
+use Nette\Security\User;
 use Wame\ComponentModule\Entities\ComponentEntity;
+use Wame\Core\Exception\RepositoryException;
+use Wame\Core\Repositories\TranslatableRepository;
 use Wame\MenuModule\Entities\MenuEntity;
 
-class MenuRepository extends \Wame\Core\Repositories\BaseRepository
+class MenuRepository extends TranslatableRepository
 {
 	const STATUS_DELETED = 0;
 	const STATUS_ACTIVE = 1;
@@ -15,7 +21,7 @@ class MenuRepository extends \Wame\Core\Repositories\BaseRepository
 	const SHOWING_EVERYONE = 2;
 	
 	
-	public function __construct(\Nette\DI\Container $container, \Kdyby\Doctrine\EntityManager $entityManager, \h4kuna\Gettext\GettextSetup $translator, \Nette\Security\User $user, $entityName = null) {
+	public function __construct(Container $container, EntityManager $entityManager, GettextSetup $translator, User $user, $entityName = null) {
 		parent::__construct($container, $entityManager, $translator, $user, MenuEntity::class);
 	}
 	
@@ -78,7 +84,7 @@ class MenuRepository extends \Wame\Core\Repositories\BaseRepository
 	 * 
 	 * @param MenuEntity $menuEntity
 	 * @return MenuEntity
-	 * @throws \Wame\Core\Exception\RepositoryException
+	 * @throws RepositoryException
 	 */
 	public function create($menuEntity)
 	{
@@ -87,7 +93,7 @@ class MenuRepository extends \Wame\Core\Repositories\BaseRepository
 		$this->entityManager->persist($menuEntity->langs);
 		
 		if (!$create) {
-			throw new \Wame\Core\Exception\RepositoryException(_('Menu item could not be created.'));
+			throw new RepositoryException(_('Menu item could not be created.'));
 		}
 		
 		return $menuEntity;
