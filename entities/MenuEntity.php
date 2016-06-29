@@ -3,7 +3,6 @@
 namespace Wame\MenuModule\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
-use Wame\ComponentModule\Entities\ComponentEntity;
 use Wame\Core\Entities\Columns;
 use Wame\Core\Entities\TranslatableEntity;
 
@@ -25,7 +24,7 @@ class MenuEntity extends TranslatableEntity
     protected $langs;
 
 	/**
-     * @ORM\ManyToOne(targetEntity="ComponentEntity", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="Wame\ComponentModule\Entities\ComponentEntity", inversedBy="id")
      * @ORM\JoinColumn(name="component_id", referencedColumnName="id", nullable=false)
      */
     protected $component;
