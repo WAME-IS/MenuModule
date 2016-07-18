@@ -35,6 +35,11 @@ class MenuEntity extends TranslatableEntity
 	protected $showing;
 
 	/**
+	 * @ORM\Column(name="sort", type="integer", nullable=false)
+	 */
+	protected $sort;
+
+	/**
 	 * @ORM\Column(name="type", type="string", nullable=true)
 	 */
 	protected $type;
@@ -52,9 +57,14 @@ class MenuEntity extends TranslatableEntity
 		return $this->component;
 	}
 	
-	public function getPrivate()
+	public function getShowing()
 	{
-		return $this->type;
+		return $this->showing;
+	}
+	
+	public function getSort()
+	{
+		return $this->sort;
 	}
 	
 	public function getType()
@@ -77,9 +87,16 @@ class MenuEntity extends TranslatableEntity
 		return $this;
 	}
 	
-	public function setPrivate($private)
+	public function setShowing($showing)
 	{
-		$this->private = $private;
+		$this->showing = $showing;
+		
+		return $this;
+	}
+	
+	public function setSort($sort)
+	{
+		$this->sort = $sort;
 		
 		return $this;
 	}
