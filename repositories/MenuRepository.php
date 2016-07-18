@@ -154,10 +154,12 @@ class MenuRepository extends TranslatableRepository
 	{
 		$criteria = ['component' => $component, 'status' => self::STATUS_ACTIVE];
 
-		if ($showing != 1 && ($showing == 0 || $showing == null)) {
-			$criteria['showing !='] = self::SHOWING_LOGGED;
-		} elseif ($showing == 1) {
-			$criteria['showing !='] = self::SHOWING_NOT_LOGGED;
+        if ($showing) {
+            if ($showing != 1 && ($showing == 0 || $showing == null)) {
+                $criteria['showing !='] = self::SHOWING_LOGGED;
+            } elseif ($showing == 1) {
+                $criteria['showing !='] = self::SHOWING_NOT_LOGGED;
+            }
 		}
 		
 		return $this->find($criteria, $orderBy, $limit, $offset);
