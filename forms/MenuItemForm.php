@@ -145,6 +145,7 @@ class MenuItemForm extends FormFactory
 		$menuEntity->setCreateDate(\Wame\Utils\Date::toDateTime('now'));
 		$menuEntity->setCreateUser($this->userEntity);
 		$menuEntity->setStatus(MenuRepository::STATUS_ACTIVE);
+		$menuEntity->setSort($this->menuRepository->getNextSort(['component' => $componentEntity, 'status !=' => ComponentRepository::STATUS_REMOVE]));
 		$menuEntity->setShowing($this->getShowing($values));
 		$menuEntity->setParameters($this->getItemParameters($values));
 		

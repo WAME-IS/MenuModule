@@ -11,6 +11,7 @@ use Wame\Core\Exception\RepositoryException;
 use Wame\Core\Repositories\TranslatableRepository;
 use Wame\MenuModule\Entities\MenuEntity;
 
+
 class MenuRepository extends TranslatableRepository
 {
 	const STATUS_DELETED = 0;
@@ -19,6 +20,9 @@ class MenuRepository extends TranslatableRepository
 	const SHOWING_NOT_LOGGED = 0;
 	const SHOWING_LOGGED = 1;
 	const SHOWING_EVERYONE = 2;
+    
+    
+    use \Wame\Core\Repositories\Traits\SortableRepositoryTrait;
 	
 	
 	public function __construct(Container $container, EntityManager $entityManager, GettextSetup $translator, User $user, $entityName = null) {
