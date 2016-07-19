@@ -24,11 +24,6 @@ services:
 	- Wame\MenuModule\Models\DatabaseMenuProvider
 	- Wame\MenuModule\Models\MenuItemProcessor
 
-
-	# Entities
-	- Wame\MenuModule\Entities\MenuEntity
-	- Wame\MenuModule\Entities\MenuLangEntity
-
 	# Repositories
 	- Wame\MenuModule\Repositories\MenuRepository
 

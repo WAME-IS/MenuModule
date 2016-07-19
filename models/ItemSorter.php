@@ -42,11 +42,11 @@ class ItemSorter
 		
 		foreach ($items as $item) {
 			if (count($item->nodes) == 0) {
-				$return[$item->priority][] = $item;
+				$return[] = $item;
 			} else {
 				$item->nodes = $this->sortItems($item->nodes);
 				
-				$return[$item->priority][] = $item;
+				$return[] = $item;
 			}
 		}
 

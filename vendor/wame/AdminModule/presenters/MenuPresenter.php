@@ -9,7 +9,7 @@ use Wame\MenuModule\Entities\MenuEntity;
 use Wame\MenuModule\Repositories\MenuRepository;
 use Wame\MenuModule\Models\MenuManager;
 use Wame\MenuModule\Vendor\Wame\AdminModule\Components\AddMenuItem\ItemTemplate;
-use Wame\PositionModule\Repositories\PositionRepository;
+use Wame\ComponentModule\Repositories\PositionRepository;
 
 class MenuPresenter extends ComponentPresenter
 {

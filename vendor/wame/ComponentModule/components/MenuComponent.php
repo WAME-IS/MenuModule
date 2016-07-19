@@ -3,7 +3,7 @@
 namespace Wame\MenuModule\Vendor\Wame\ComponentModule;
 
 use Nette\Application\LinkGenerator;
-use Wame\ComponentModule\Models\IComponent;
+use Wame\ComponentModule\Registers\IComponent;
 use Wame\MenuModule\Models\Item;
 use Wame\MenuModule\Components\IMenuControlFactory;
 use Wame\MenuModule\Models\DatabaseMenuProvider;
@@ -87,35 +87,12 @@ class MenuComponent implements IComponent
 	}
 	
 	
-	public function createComponent($componentInPosition)
+	public function createComponent()
 	{
 		$control = $this->IMenuControlFactory->create();
+//        $componentInPosition
 		$control->addProvider($this->databaseMenuProvider->setName($componentInPosition->component->name), $componentInPosition->component->name);
-		$control->setComponentInPosition($componentInPosition);
-
-		$class = $this->getContainerClass($componentInPosition);
-		
-		if ($class) {
-			$control->getContainerPrototype()->class[] = $class;
-		}
-		
 		return $control;
-	}
-	
-	
-	private function getContainerClass($componentInPosition)
-	{
-		$class = null;
-		
-		if ($componentInPosition->component->getParameter('class')) {
-			$class = $componentInPosition->component->getParameter('class');
-		}
-
-		if ($componentInPosition->position->getParameter('class')) {
-			$class = $componentInPosition->position->getParameter('class');
-		}
-
-		return $class;
 	}
 	
 }

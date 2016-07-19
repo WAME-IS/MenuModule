@@ -1,4 +1,4 @@
 services:
-	ComponentManager:
+	ComponentRegister:
 		setup:
-			- addComponent(Wame\MenuModule\Vendor\Wame\ComponentModule\MenuComponent())
+			- add(Wame\MenuModule\Vendor\Wame\ComponentModule\MenuComponent())
