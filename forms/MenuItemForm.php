@@ -223,7 +223,8 @@ class MenuItemForm extends FormFactory
 		$array = [
 			'class' => $values['class'],
 			'icon' => $values['icon'],
-			'only_icon' => $values['only_icon']
+			'only_icon' => $values['only_icon'],
+			'open' => $values['open']
 		];
 		
 		return array_replace($parameters, $array);

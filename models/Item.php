@@ -3,6 +3,8 @@
 namespace Wame\MenuModule\Models;
 
 use Nette\Utils\Strings;
+use Wame\MenuModule\Repositories\MenuRepository;
+
 
 class Item
 {	
@@ -21,11 +23,11 @@ class Item
     /** @var string */
     private $link;
     
-    /** @var boolean */
-    private $modal = false;
-    
     /** @var string */
     private $name;
+    
+    /** @var string */
+    private $open = MenuRepository::OPEN_NORMAL;
     
     /** @var string */
     private $title;
@@ -105,20 +107,6 @@ class Item
     
 	
     /**
-     * Set open in modal
-     * 
-     * @param boolean $modal
-     * @return \App\AdminModule\Components\AdminMenuControl\Item
-     */
-	public function setModal($modal)
-    {
-        $this->modal = $modal;
-        
-        return $this;
-    }
-    
-	
-    /**
      * Set item name
      * 
      * @param string $name
@@ -127,6 +115,20 @@ class Item
 	public function setName($name)
     {
         $this->name = $name;
+        
+        return $this;
+    }
+    
+	
+    /**
+     * Set open type
+     * 
+     * @param string $open
+     * @return \App\AdminModule\Components\AdminMenuControl\Item
+     */
+	public function setOpen($open)
+    {
+        $this->open = $open;
         
         return $this;
     }
@@ -177,8 +179,8 @@ class Item
         $return->description = $this->description;
         $return->icon = $this->icon;
         $return->link = $this->link;
-        $return->modal = $this->modal;
         $return->name = $this->getName();
+        $return->open = $this->open;
         $return->title = $this->title;
         $return->nodes = $this->nodes;
         

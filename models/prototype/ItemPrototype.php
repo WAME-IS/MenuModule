@@ -55,9 +55,11 @@ class ItemPrototype
         if (empty($item->link)) {
             $return = $html;
         } else {
-            $return = Html::el('a')
-                            ->href($item->link)
-                            ->setHtml($html);
+            $return = Html::el('a')->href($item->link);
+            
+            $this->getOpenLink($item, $return);
+            
+            $return->setHtml($html);
         }
         
         if (count($item->nodes) > 0) {
@@ -150,6 +152,29 @@ class ItemPrototype
         }
         
         return $html;
+    }
+    
+    
+    /**
+     * Get link open
+     * 
+     * @param \stdClass $item
+     * @param Html $element
+     * @return Html
+     */
+    private function getOpenLink($item, $element)
+    {
+        if ($item->open == 'new_window') {
+            $element->setTarget('_blank');
+        } elseif ($item->open == 'small_modal') {
+            $element->setClass('ajax-modal ajax-modal-sm');
+        } elseif ($item->open == 'medium_modal') {
+            $element->setClass('ajax-modal');
+        } elseif ($item->open == 'large_modal') {
+            $element->setClass('ajax-modal ajax-modal-lg');
+        }
+        
+        return $element;
     }
 
 }

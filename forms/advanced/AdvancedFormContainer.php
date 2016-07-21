@@ -35,6 +35,10 @@ class AdvancedFormContainer extends BaseFormContainer
         $form->addRadioList('showing', _('Showing'), $this->menuRepository->getShowingList())
 				->setDefaultValue(MenuRepository::SHOWING_EVERYONE)
 				->getSeparatorPrototype()->setName(null);
+        
+        $form->addRadioList('open', _('Open'), $this->menuRepository->getOpenTypeList())
+                ->setDefaultValue(MenuRepository::OPEN_NORMAL)
+				->getSeparatorPrototype()->setName(null);
 
 		$form->addText('class', _('CSS class'));
 
@@ -51,8 +55,12 @@ class AdvancedFormContainer extends BaseFormContainer
 		$form = $this->getForm();
 
 		$form['showing']->setDefaultValue($object->menuEntity->showing);
-		
+
 		$parameters = $object->menuEntity->parameters;
+		
+		if (isset($parameters['open'])) {
+			$form['open']->setDefaultValue($parameters['open']);
+		}
 		
 		if (isset($parameters['class'])) {
 			$form['class']->setDefaultValue($parameters['class']);

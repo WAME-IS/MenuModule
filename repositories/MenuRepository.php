@@ -21,6 +21,12 @@ class MenuRepository extends TranslatableRepository
 	const SHOWING_LOGGED = 1;
 	const SHOWING_EVERYONE = 2;
     
+    const OPEN_NORMAL = 'normal';
+    const OPEN_NEW_WINDOW = 'new_window';
+    const OPEN_SMALL_MODAL = 'small_modal';
+    const OPEN_MEDIUM_MODAL = 'medium_modal';
+    const OPEN_LARGE_MODAL = 'large_modal';
+
     
     use \Wame\Core\Repositories\Traits\SortableRepositoryTrait;
 	
@@ -70,6 +76,22 @@ class MenuRepository extends TranslatableRepository
 		];
 	}
 	
+    /**
+     * Return open link type list
+     * 
+     * @return array
+     */
+    public function getOpenTypeList()
+    {
+        return [
+            self::OPEN_NORMAL => _('Normal'),
+            self::OPEN_NEW_WINDOW => _('New window'),
+            self::OPEN_SMALL_MODAL => _('Small modal window'),
+            self::OPEN_MEDIUM_MODAL => _('Medium modal window'),
+            self::OPEN_LARGE_MODAL => _('Large modal window')
+        ];
+    }
+    
 	
 	/**
 	 * Return showing
