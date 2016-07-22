@@ -84,7 +84,7 @@ class DatabaseMenuProvider implements IMenuProvider
 			$showing = 0;
 		}
 
-		$items = $this->menuRepository->getItems($component, $showing);
+		$items = $this->menuRepository->getItems($component, $showing, ['sort' => 'ASC']);
 		
         return $this->menuItemProcessor->process($items);
     }

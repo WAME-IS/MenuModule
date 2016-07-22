@@ -11,6 +11,7 @@ use Wame\Core\Exception\RepositoryException;
 use Wame\Core\Repositories\TranslatableRepository;
 use Wame\MenuModule\Entities\MenuEntity;
 
+
 class MenuRepository extends TranslatableRepository
 {
 	const STATUS_DELETED = 0;
@@ -19,6 +20,15 @@ class MenuRepository extends TranslatableRepository
 	const SHOWING_NOT_LOGGED = 0;
 	const SHOWING_LOGGED = 1;
 	const SHOWING_EVERYONE = 2;
+    
+    const OPEN_NORMAL = 'normal';
+    const OPEN_NEW_WINDOW = 'new_window';
+    const OPEN_SMALL_MODAL = 'small_modal';
+    const OPEN_MEDIUM_MODAL = 'medium_modal';
+    const OPEN_LARGE_MODAL = 'large_modal';
+
+    
+    use \Wame\Core\Repositories\Traits\SortableRepositoryTrait;
 	
 	
 	public function __construct(Container $container, EntityManager $entityManager, GettextSetup $translator, User $user, $entityName = null) {
@@ -66,6 +76,22 @@ class MenuRepository extends TranslatableRepository
 		];
 	}
 	
+    /**
+     * Return open link type list
+     * 
+     * @return array
+     */
+    public function getOpenTypeList()
+    {
+        return [
+            self::OPEN_NORMAL => _('Normal'),
+            self::OPEN_NEW_WINDOW => _('New window'),
+            self::OPEN_SMALL_MODAL => _('Small modal window'),
+            self::OPEN_MEDIUM_MODAL => _('Medium modal window'),
+            self::OPEN_LARGE_MODAL => _('Large modal window')
+        ];
+    }
+    
 	
 	/**
 	 * Return showing
@@ -150,11 +176,11 @@ class MenuRepository extends TranslatableRepository
 	{
 		$criteria = ['component' => $component, 'status' => self::STATUS_ACTIVE];
 
-		if ($showing != 1 && ($showing == 0 || $showing == null)) {
-			$criteria['showing !='] = self::SHOWING_LOGGED;
-		} elseif ($showing == 1) {
-			$criteria['showing !='] = self::SHOWING_NOT_LOGGED;
-		}
+        if ($showing != 1 && ($showing == 0 || $showing == null)) {
+            $criteria['showing !='] = self::SHOWING_LOGGED;
+        } elseif ($showing == 1) {
+            $criteria['showing !='] = self::SHOWING_NOT_LOGGED;
+        }
 		
 		return $this->find($criteria, $orderBy, $limit, $offset);
 	}

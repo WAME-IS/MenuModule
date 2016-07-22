@@ -40,6 +40,7 @@ class MenuItemProcessor
 		$menuItem->setName('item_' . $item->id);
 		$menuItem->setTitle($item->langs[$this->lang]->getItemTitle());
 		$menuItem->setLink($this->menuManager[$item->type]->getLink($item));
+        $menuItem->setOpen($item->getParameter('open'));
 		
 		if ($item->getParameter('icon')) {
 			$menuItem->setIcon($item->getParameter('icon'));

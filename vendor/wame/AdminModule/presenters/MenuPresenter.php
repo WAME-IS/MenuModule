@@ -176,6 +176,10 @@ class MenuPresenter extends ComponentPresenter
 	public function renderDefault()
 	{
 		$showing = $this->getParameter('s');
+        
+        if (!$showing) {
+            $showing = MenuRepository::SHOWING_EVERYONE;
+        }
 		
 		$this->template->siteTitle = $this->component->langs[$this->lang]->title;
 		$this->template->menuManager = $this->menuManager->menuItemTypes;
