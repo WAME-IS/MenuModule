@@ -88,13 +88,9 @@ class MenuRepository extends TranslatableRepository
 	 */
 	public function create($menuEntity)
 	{
-		$create = $this->entityManager->persist($menuEntity);
+		$this->entityManager->persist($menuEntity);
 		
 		$this->entityManager->persist($menuEntity->langs);
-		
-		if (!$create) {
-			throw new RepositoryException(_('Menu item could not be created.'));
-		}
 		
 		return $menuEntity;
 	}
