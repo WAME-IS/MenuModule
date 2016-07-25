@@ -131,8 +131,5 @@ class MenuControl extends BaseControl
             $this->template->position = $this->componentInPosition->position;
         }
         $this->template->menu = $this->menuBuilder->create();
-
-        $this->getTemplateFile();
-        $this->template->render();
     }
 }
