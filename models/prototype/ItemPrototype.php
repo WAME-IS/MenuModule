@@ -25,11 +25,13 @@ class ItemPrototype
     {
         $this->element = $element;
 
-        foreach ($items as $item) {
-            if ($itemTemplate) {
-                $this->items[] = clone $itemTemplate->createItem($element, $item);
-            } else {
-                $this->items[] = clone $this->getItem($item);
+        foreach ($items as $priority) {
+            foreach ($priority as $item) {
+                if ($itemTemplate) {
+                    $this->items[] = clone $itemTemplate->createItem($element, $item);
+                } else {
+                    $this->items[] = clone $this->getItem($item);
+                }
             }
         }
 

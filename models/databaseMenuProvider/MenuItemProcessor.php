@@ -41,10 +41,7 @@ class MenuItemProcessor
 		$menuItem->setTitle($item->langs[$this->lang]->getItemTitle());
 		$menuItem->setLink($this->menuManager[$item->type]->getLink($item));
         $menuItem->setOpen($item->getParameter('open'));
-		
-		if ($item->getParameter('icon')) {
-			$menuItem->setIcon($item->getParameter('icon'));
-		}
+		$menuItem->setIcon($item->getParameter('icon'));
 		
 		if ($item->getParameter('class')) {
 			$menuItem->addAttributes(['class' => $item->getParameter('class')]);

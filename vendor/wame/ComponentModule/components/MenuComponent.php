@@ -90,7 +90,8 @@ class MenuComponent implements IComponent
 	public function createComponent($componentInPosition = null)
 	{
 		$control = $this->IMenuControlFactory->create();
-        $control->addProvider($this->databaseMenuProvider->setName($componentInPosition->component->name), 'database');
+        $control->addProvider($this->databaseMenuProvider->setName($componentInPosition->component->name), $componentInPosition->component->name);
+        
 		return $control;
 	}
 	
