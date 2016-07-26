@@ -25,18 +25,36 @@ class ItemPrototype
     {
         $this->element = $element;
 
-        foreach ($items as $priority) {
-            foreach ($priority as $item) {
-                if ($itemTemplate) {
-                    $this->items[] = clone $itemTemplate->createItem($element, $item);
-                } else {
-                    $this->items[] = clone $this->getItem($item);
-                }
+        if (is_array(current($items))) {
+            foreach ($items as $priority) {
+                $this->getItems($element, $priority, $itemTemplate);
             }
+        } else {
+            $this->getItems($element, $items, $itemTemplate);
         }
 
         return $this->items;
     }
+    
+    
+    /**
+     * Get items
+     * 
+     * @param Html $element
+     * @param array $items
+     * @param string $itemTemplate
+     */
+    private function getItems($element, $items, $itemTemplate)
+    {
+        foreach ($items as $item) {
+            if ($itemTemplate) {
+                $this->items[] = clone $itemTemplate->createItem($element, $item);
+            } else {
+                $this->items[] = clone $this->getItem($item);
+            }
+        }
+    }
+    
 
     /**
      * Generate Html item
