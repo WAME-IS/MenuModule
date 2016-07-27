@@ -223,9 +223,14 @@ class MenuItemForm extends FormFactory
 		$array = [
 			'class' => $values['class'],
 			'icon' => $values['icon'],
-			'only_icon' => $values['only_icon'],
-			'open' => $values['open']
+			'only_icon' => $values['only_icon']
 		];
+        
+        if (isset($values['open'])) {
+            $array['open'] = $values['open'];
+        } else {
+            $array['open'] = MenuRepository::OPEN_NORMAL;
+        }
 		
 		return array_replace($parameters, $array);
 	}
