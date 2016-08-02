@@ -16,70 +16,7 @@
 	
 	<div class="row">
 		<div class="col-md-8 col-lg-9">
-			<div div class="row">
-				<div class="col-sm-6">
-					{_'Showing'}
-					<div class="btn-group" role="group" aria-label="showing">
-						<a class="btn btn-default {$showing == null ? 'active'}" n:href="this, 's' => null">{_'All'}</a>
-						<a class="btn btn-default {$showing == 0 && $showing != null ? 'active'}" n:href="this, 's' => 0">{_'Not logged'}</a>
-						<a class="btn btn-default {$showing == 1 ? 'active'}" n:href="this, 's' => 1">{_'Logged'}</a>
-					</div>
-				</div>
-				
-				<div n:if="count($items) > 0" class="col-sm-6 text-right">
-					<a class="btn btn-success" n:href=":Admin:Menu:addItem">
-						<span class="fa fa-plus"></span>
-						{_'Add item'}
-					</a>
-				</div>
-			</div>
-
-			{if count($items) == 0}
-				<br>
-				<div class="lead text-muted">{_'You do not have created any items in this menu.'}</div>
-				
-				<a class="btn btn-success" n:href=":Admin:Menu:addItem">
-					<span class="fa fa-plus"></span>
-					{_'Add first item'}
-				</a>
-			{else}
-				<table class="table">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>{_'Type'}</th>
-							<th>{_'Title'}</th>
-							<th>{_'Showing'}</th>
-							<th></th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<tr n:foreach="$items as $item">
-							<td>
-								{$iterator->counter}
-							</td>
-
-							<td>
-								<span class="{$menuManager[$item->type]->getIcon()}" title="{$menuManager[$item->type]->getTitle()}"></span>
-							</td>
-
-							<td>
-								<a href="{$menuManager[$item->type]->getLinkUpdate($item)}">{$item->langs[$lang]->itemTitle}</a>
-							</td>
-
-							<td>
-								{$showingList[$item->showing]}
-							</td>
-
-							<td class="text-right">
-								<a class="btn btn-sm btn-warning" href="{$menuManager[$item->type]->getLinkUpdate($item)}"><span class="fa fa-edit"></span></a>
-								<a class="btn btn-sm btn-danger" n:href=":Admin:Menu:deleteItem, 'id' => $item->id"><span class="fa fa-trash-o"></span></a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			{/if}
+			{control menuGrid}
 		</div>
 		
 		<div class="col-md-4 col-lg-3">

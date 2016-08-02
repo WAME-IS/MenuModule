@@ -10,6 +10,8 @@ use Wame\MenuModule\Repositories\MenuRepository;
 use Wame\MenuModule\Models\MenuManager;
 use Wame\MenuModule\Vendor\Wame\AdminModule\Components\AddMenuItem\ItemTemplate;
 use Wame\ComponentModule\Repositories\PositionRepository;
+use Wame\DataGridControl\IDataGridControlFactory;
+use Wame\MenuModule\Vendor\Wame\AdminModule\Grids\MenuGrid;
 
 class MenuPresenter extends ComponentPresenter
 {
@@ -36,6 +38,12 @@ class MenuPresenter extends ComponentPresenter
 
 	/** @var PositionRepository @inject */
 	public $positionRepository;
+    
+    /** @var IDataGridControlFactory @inject */
+	public $gridControl;
+    
+    /** @var MenuGrid @inject */
+	public $menuGrid;
 
 	
 	public function actionDefault()
@@ -136,40 +144,22 @@ class MenuPresenter extends ComponentPresenter
 			$this->redirect(':Admin:Component:', ['id' => null]);
 		}
 	}
-	
-
-	/**
-	 * Menu component form
-	 * 
-	 * @return ComponentForm
+    
+    
+    /**
+	 * Delete menu item
 	 */
-	protected function createComponentMenuForm()
+	public function handleDeleteItem()
 	{
-		$form = $this->componentForm
-						->setType('MenuComponent')
-						->setId($this->id)
-						->build();
-
-		return $form;
-	}
-	
-	
-	/**
-	 * Add menu item list
-	 * 
-	 * @return MenuControl
-	 */
-	protected function createComponentAddMenuItem()
-	{
-        $control = $this->IMenuControlFactory->create();
-		$control->addProvider($this->menuManager);
-
-		$control->setContainerPrototype(Html::el('div')->setClass('com-menu-item-types'));
-		$control->setListPrototype(Html::el('div')->setClass('row'));
-		$control->setItemPrototype(Html::el('div')->setClass('col-xs-6 col-sm-4 col-lg-3'));
-		$control->setItemTemplate($this->itemTemplate);
-        
-		return $control;
+		if (!$this->user->isAllowed('menu', 'deleteItem')) {
+			$this->flashMessage(_('For this action you do not have enough privileges.'), 'danger');
+			$this->redirect(':Admin:Dashboard:', ['id' => null]);	
+		}
+		
+		$this->menuRepository->delete(['id' => $this->id]);
+		
+		$this->flashMessage(_('Menu item has been successfully deleted.'), 'success');
+		$this->redirect(':Admin:Menu:', ['id' => $this->item->component->id]);
 	}
 	
 	
@@ -214,22 +204,62 @@ class MenuPresenter extends ComponentPresenter
 		$this->template->siteTitle = _('Deleting menu item');
 		$this->template->menuId = $this->item->component->id;
 	}
+    
+    
+    /** components ************************************************************/
+    
+    /**
+	 * Menu component form
+	 * 
+	 * @return ComponentForm
+	 */
+	protected function createComponentMenuForm()
+	{
+		$form = $this->componentForm
+						->setType('MenuComponent')
+						->setId($this->id)
+						->build();
+
+		return $form;
+	}
 	
 	
 	/**
-	 * Delete menu item
+	 * Add menu item list
+	 * 
+	 * @return MenuControl
 	 */
-	public function handleDeleteItem()
+	protected function createComponentAddMenuItem()
 	{
-		if (!$this->user->isAllowed('menu', 'deleteItem')) {
-			$this->flashMessage(_('For this action you do not have enough privileges.'), 'danger');
-			$this->redirect(':Admin:Dashboard:', ['id' => null]);	
-		}
+        $control = $this->IMenuControlFactory->create();
+		$control->addProvider($this->menuManager);
+
+		$control->setContainerPrototype(Html::el('div')->setClass('com-menu-item-types'));
+		$control->setListPrototype(Html::el('div')->setClass('row'));
+		$control->setItemPrototype(Html::el('div')->setClass('col-xs-6 col-sm-4 col-lg-3'));
+		$control->setItemTemplate($this->itemTemplate);
+        
+		return $control;
+	}
+    
+    
+    /**
+     * Component menu grid
+     * 
+     * @param type $name
+     * @return type
+     */
+    protected function createComponentMenuGrid()
+	{
+        $qb = $this->menuRepository->createQueryBuilder();
+        $qb->andWhere('a.component = ?1')->setParameter(1, $this->component);
+        
+		$grid = $this->gridControl->create();
+		$grid->setDataSource($qb);
 		
-		$this->menuRepository->delete(['id' => $this->id]);
+		$grid->setProvider($this->menuGrid);
 		
-		$this->flashMessage(_('Menu item has been successfully deleted.'), 'success');
-		$this->redirect(':Admin:Menu:', ['id' => $this->item->component->id]);
+		return $grid;
 	}
 	
 }

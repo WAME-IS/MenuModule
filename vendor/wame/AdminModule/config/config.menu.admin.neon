@@ -1,2 +1,13 @@
 services:
-	- Wame\MenuModule\Vendor\Wame\AdminModule\Components\AddMenuItem\ItemTemplate
+    - Wame\MenuModule\Vendor\Wame\AdminModule\Components\AddMenuItem\ItemTemplate
+
+    MenuGrid:
+        class: Wame\MenuModule\Vendor\Wame\AdminModule\Grids\MenuGrid
+        setup:
+            - addColumn(Wame\DataGridControl\IdGridColumn())
+            - addColumn(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\TypeGridColumn())
+            - addColumn(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\TitleLinkGridColumn())
+            - addColumn(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\ShowingGridColumn())
+            - addColumn(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\StatusGridColumn())
+            - addColumn(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\DeleteGridAction())
+            - addColumn(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\AddGridToolbarButton())
