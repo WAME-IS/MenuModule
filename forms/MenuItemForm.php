@@ -62,8 +62,6 @@ class MenuItemForm extends FormFactory
 		MenuRepository $menuRepository,
 		UserRepository $userRepository
 	) {
-		parent::__construct();
-
 		$this->httpRequest = $httpRequest;
 		$this->user = $user;
 		$this->entityManager = $entityManager;

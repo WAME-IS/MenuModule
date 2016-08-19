@@ -3,12 +3,12 @@
 namespace Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns;
 
 use Nette\Utils\Html;
-use Wame\DataGridControl\BaseGridColumn;
-use Wame\ComponentModule\Registers\ComponentRegister;
+use Wame\DataGridControl\BaseGridItem;
 use Wame\MenuModule\Models\MenuManager;
 
-class TypeGridColumn extends BaseGridColumn
+class Type extends BaseGridItem
 {
+    /** @var MenuManager */
     private $menuManager;
     
     
@@ -18,7 +18,8 @@ class TypeGridColumn extends BaseGridColumn
     }
     
     
-	public function addColumn($grid)
+	/** {@inheritDoc} */
+	public function render($grid)
     {
 		$grid->addColumnText('type', _('Type'))
 				->setRenderer(function($item) {

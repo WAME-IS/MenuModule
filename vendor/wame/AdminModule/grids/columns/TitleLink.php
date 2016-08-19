@@ -2,12 +2,13 @@
 
 namespace Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns;
 
-use Wame\DataGridControl\BaseGridColumn;
-use Wame\MenuModule\Models\MenuManager;
 use Nette\Utils\Html;
+use Wame\DataGridControl\BaseGridItem;
+use Wame\MenuModule\Models\MenuManager;
 
-class TitleLinkGridColumn extends BaseGridColumn
+class TitleLink extends BaseGridItem
 {
+    /** @var MenuManager */
     private $menuManager;
     
     
@@ -17,7 +18,9 @@ class TitleLinkGridColumn extends BaseGridColumn
     }
     
     
-	public function addColumn($grid) {
+	/** {@inheritDoc} */
+	public function render($grid)
+    {
 		$grid->addColumnLink('title', _('Title'))
 				->setRenderer(function($item) {
                     return Html::el('a')
@@ -29,4 +32,5 @@ class TitleLinkGridColumn extends BaseGridColumn
 		
 		return $grid;
 	}
+    
 }

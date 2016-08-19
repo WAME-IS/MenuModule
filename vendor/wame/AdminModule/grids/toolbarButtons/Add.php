@@ -1,10 +1,13 @@
 <?php
 
-namespace Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns;
+namespace Wame\MenuModule\Vendor\Wame\AdminModule\Grids\ToolbarButtons;
 
-class AddGridToolbarButton extends \Wame\DataGridControl\BaseGridColumn
+use Wame\DataGridControl\BaseGridItem;
+
+class Add extends BaseGridItem
 {
-	public function addColumn($grid)
+	/** {@inheritDoc} */
+	public function render($grid)
     {
         $grid->addToolbarButton(':Admin:Menu:addItem', _('Add item'), ['id' => $grid->presenter->id])
                 ->setIcon('fa fa-plus')
@@ -12,4 +15,5 @@ class AddGridToolbarButton extends \Wame\DataGridControl\BaseGridColumn
                 
 		return $grid;
 	}
+    
 }

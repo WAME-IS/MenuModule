@@ -1,12 +1,13 @@
 <?php
 
-namespace Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns;
+namespace Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Actions;
 
-use Wame\DataGridControl\BaseGridColumn;
+use Wame\DataGridControl\BaseGridItem;
 use Wame\MenuModule\Models\MenuManager;
 
-class EditGridAction extends BaseGridColumn
+class Edit extends BaseGridItem
 {
+    /** @var MenuManager */
     private $menuManager;
     
     
@@ -16,8 +17,9 @@ class EditGridAction extends BaseGridColumn
     }
     
     
-	public function addColumn($grid)
-	{
+	/** {@inheritDoc} */
+	public function render($grid)
+    {
 		$grid->addAction('edit', '')
             ->setRenderer(function($item) {
                 return $this->menuManager[$item->type]->getLinkUpdate($item);
@@ -28,4 +30,5 @@ class EditGridAction extends BaseGridColumn
 		
 		return $grid;
 	}
+    
 }

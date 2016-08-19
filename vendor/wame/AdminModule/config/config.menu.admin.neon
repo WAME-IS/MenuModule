@@ -4,10 +4,10 @@ services:
     MenuGrid:
         class: Wame\MenuModule\Vendor\Wame\AdminModule\Grids\MenuGrid
         setup:
-            - addColumn(Wame\DataGridControl\IdGridColumn())
-            - addColumn(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\TypeGridColumn())
-            - addColumn(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\TitleLinkGridColumn())
-            - addColumn(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\ShowingGridColumn())
-            - addColumn(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\StatusGridColumn())
-            - addColumn(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\DeleteGridAction())
-            - addColumn(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\AddGridToolbarButton())
+            - add(Wame\DataGridControl\Columns\Id())
+            - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\Type())
+            - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\TitleLink())
+            - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\Showing())
+            - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\Status())
+#            - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Actions\Delete())
+            - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\ToolbarButtons\Add())

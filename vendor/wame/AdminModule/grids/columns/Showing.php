@@ -2,11 +2,13 @@
 
 namespace Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns;
 
-use Wame\DataGridControl\BaseGridColumn;
+use Wame\DataGridControl\BaseGridItem;
 
-class ShowingGridColumn extends BaseGridColumn
+class Showing extends BaseGridItem
 {
-	public function addColumn($grid) {
+	/** {@inheritDoc} */
+	public function render($grid)
+    {
 		$grid->addColumnText('showing', _('Showing'))
                 ->setRenderer(function($item) {
                     switch($item->showing) {
@@ -26,4 +28,5 @@ class ShowingGridColumn extends BaseGridColumn
                 
 		return $grid;
 	}
+    
 }
