@@ -10,7 +10,6 @@ use Wame\MenuModule\Repositories\MenuRepository;
 use Wame\MenuModule\Models\MenuManager;
 use Wame\MenuModule\Vendor\Wame\AdminModule\Components\AddMenuItem\ItemTemplate;
 use Wame\ComponentModule\Repositories\PositionRepository;
-use Wame\DataGridControl\IDataGridControlFactory;
 use Wame\MenuModule\Vendor\Wame\AdminModule\Grids\MenuGrid;
 
 class MenuPresenter extends ComponentPresenter
@@ -38,9 +37,6 @@ class MenuPresenter extends ComponentPresenter
 
 	/** @var PositionRepository @inject */
 	public $positionRepository;
-    
-    /** @var IDataGridControlFactory @inject */
-	public $gridControl;
     
     /** @var MenuGrid @inject */
 	public $menuGrid;
@@ -253,13 +249,9 @@ class MenuPresenter extends ComponentPresenter
 	{
         $qb = $this->menuRepository->createQueryBuilder();
         $qb->andWhere('a.component = ?1')->setParameter(1, $this->component);
-        
-		$grid = $this->gridControl->create();
-		$grid->setDataSource($qb);
+		$this->menuGrid->setDataSource($qb);
 		
-		$grid->setProvider($this->menuGrid);
-		
-		return $grid;
+		return $this->menuGrid;
 	}
 	
 }
