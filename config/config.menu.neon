@@ -1,44 +1,46 @@
 services:
-	PermissionObject:
-		setup:
-			- addResource('menu')
-			- addResourceAction('menu', 'view')
-			- allow('moderator', 'menu', 'view')
-			- addResourceAction('menu', 'create')
-			- allow('moderator', 'menu', 'create')
-			- addResourceAction('menu', 'edit')
-			- allow('moderator', 'menu', 'edit')
-			- addResourceAction('menu', 'delete')
-			- allow('moderator', 'menu', 'delete')
-			- addResourceAction('menu', 'addItem')
-			- allow('moderator', 'menu', 'addItem')
-			- addResourceAction('menu', 'deleteItem')
-			- allow('moderator', 'menu', 'deleteItem')
+    PermissionObject:
+        setup:
+            - addResource('menu')
+            - addResourceAction('menu', 'view')
+            - allow('moderator', 'menu', 'view')
+            - addResourceAction('menu', 'create')
+            - allow('moderator', 'menu', 'create')
+            - addResourceAction('menu', 'edit')
+            - allow('moderator', 'menu', 'edit')
+            - addResourceAction('menu', 'delete')
+            - allow('moderator', 'menu', 'delete')
+            - addResourceAction('menu', 'addItem')
+            - allow('moderator', 'menu', 'addItem')
+            - addResourceAction('menu', 'deleteItem')
+            - allow('moderator', 'menu', 'deleteItem')
 
 
-	- Wame\MenuModule\Models\MenuBuilder
-	- Wame\MenuModule\Models\Prototype\ItemPrototype
-	- Wame\MenuModule\Models\ItemSorter
-	- Wame\MenuModule\Components\MenuControl
-	- Wame\MenuModule\Components\IMenuControlFactory
-	- Wame\MenuModule\Models\DatabaseMenuProvider
-	- Wame\MenuModule\Models\MenuItemProcessor
+    - Wame\MenuModule\Models\MenuBuilder
+    - Wame\MenuModule\Models\Prototype\ItemPrototype
+    - Wame\MenuModule\Models\ItemSorter
+    - Wame\MenuModule\Components\MenuControl
+    - Wame\MenuModule\Components\IMenuControlFactory
+    - Wame\MenuModule\Models\DatabaseMenuProvider
+    - Wame\MenuModule\Models\MenuItemProcessor
 
-	# Repositories
-	- Wame\MenuModule\Repositories\MenuRepository
-
-
-	MenuManager:
-		class: Wame\MenuModule\Models\MenuManager
+    # Repositories
+    MenuRepository:
+        class: Wame\MenuModule\Repositories\MenuRepository
+        inject: yes
 
 
-	MenuItemForm:
-		class: Wame\MenuModule\Forms\MenuItemForm
-		setup:
-			- addFormContainer(Wame\MenuModule\Forms\BasicFormContainer(), 'BasicFormContainer', 100)
-			- addFormContainer(Wame\MenuModule\Forms\AdvancedFormContainer(), 'AdvancedFormContainer', 10)
+    MenuManager:
+        class: Wame\MenuModule\Models\MenuManager
+
+
+    MenuItemForm:
+        class: Wame\MenuModule\Forms\MenuItemForm
+        setup:
+            - addFormContainer(Wame\MenuModule\Forms\BasicFormContainer(), 'BasicFormContainer', 100)
+            - addFormContainer(Wame\MenuModule\Forms\AdvancedFormContainer(), 'AdvancedFormContainer', 10)
 
 
 doctrine:
-	metadata:
-		Wame\MenuModule\Entities: %appDir%/../vendor/wame/MenuModule/entities
+    metadata:
+        Wame\MenuModule\Entities: %appDir%/../vendor/wame/MenuModule/entities

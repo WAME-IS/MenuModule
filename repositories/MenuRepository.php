@@ -2,15 +2,11 @@
 
 namespace Wame\MenuModule\Repositories;
 
-use h4kuna\Gettext\GettextSetup;
-use Kdyby\Doctrine\EntityManager;
-use Nette\DI\Container;
-use Nette\Security\User;
 use Wame\ComponentModule\Entities\ComponentEntity;
 use Wame\Core\Exception\RepositoryException;
 use Wame\LanguageModule\Repositories\TranslatableRepository;
 use Wame\MenuModule\Entities\MenuEntity;
-
+use Wame\MenuModule\Entities\MenuLangEntity;
 
 class MenuRepository extends TranslatableRepository
 {
@@ -31,8 +27,9 @@ class MenuRepository extends TranslatableRepository
     use \Wame\Core\Repositories\Traits\SortableRepositoryTrait;
 	
 	
-	public function __construct(Container $container, EntityManager $entityManager, GettextSetup $translator, User $user, $entityName = null) {
-		parent::__construct($container, $entityManager, $translator, $user, MenuEntity::class);
+	public function __construct()
+    {
+		parent::__construct(MenuEntity::class, MenuLangEntity::class);
 	}
 	
 	
