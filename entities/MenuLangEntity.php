@@ -4,12 +4,13 @@ namespace Wame\MenuModule\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 use Wame\Core\Entities\Columns;
+use Wame\Core\Entities\BaseLangEntity;
 
 /**
  * @ORM\Table(name="wame_menu_lang")
  * @ORM\Entity
  */
-class MenuLangEntity extends \Wame\Core\Entities\BaseEntity 
+class MenuLangEntity extends BaseLangEntity
 {
 	use Columns\Identifier;
 	use Columns\EditDate;
@@ -51,5 +52,12 @@ class MenuLangEntity extends \Wame\Core\Entities\BaseEntity
 			return $this->getTitle();
 		}
 	}
+    
+    
+    /** {@inheritDoc} */
+    public function setEntity($entity)
+    {
+        $this->item = $entity;
+    }
 	
 }
