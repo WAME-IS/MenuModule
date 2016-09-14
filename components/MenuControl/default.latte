@@ -1,13 +1,7 @@
 {if $menu}
-	{$menu->container->startTag()|noescape}
 
-		{$menu->list->startTag()|noescape}
+    {foreach $menu->items as $item}
+        {$item}
+    {/foreach}
 
-			{foreach $menu->items as $item}
-				{$item}
-			{/foreach}
-
-		{$menu->list->endTag()|noescape}
-
-	{$menu->container->endTag()|noescape}
 {/if}
