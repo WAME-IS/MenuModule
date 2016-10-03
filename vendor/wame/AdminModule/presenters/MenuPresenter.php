@@ -33,7 +33,7 @@ class MenuPresenter extends ComponentPresenter
 	public $menuManager;
 
 	/** @var ItemTemplate @inject */
-	public $itemTemplate;
+	public $adminMenuItemTemplate;
 
 	/** @var PositionRepository @inject */
 	public $positionRepository;
@@ -233,7 +233,7 @@ class MenuPresenter extends ComponentPresenter
 		$control->setContainerPrototype(Html::el('div')->setClass('com-menu-item-types'));
 		$control->setListPrototype(Html::el('div')->setClass('row'));
 		$control->setItemPrototype(Html::el('div')->setClass('col-xs-6 col-sm-4 col-lg-3'));
-		$control->setItemTemplate($this->itemTemplate);
+		$control->setItemTemplate($this->adminMenuItemTemplate);
         
 		return $control;
 	}

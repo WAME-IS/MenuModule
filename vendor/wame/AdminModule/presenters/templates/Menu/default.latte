@@ -1,19 +1,11 @@
 {block content}
-	<div class="page-header">
-		<div class="row">
-			<div class="col-md-8">
-				<h1>{$siteTitle}</h1>
-				<small n:if="$component->langs[$lang]->description" class="text-muted">{$component->langs[$lang]->description}</small>
-			</div>
-			<div class="col-md-4 text-right">
-				<a class="btn btn-warning" n:href="Menu:edit">
-					<span class="fa fa-edit"></span>
-					{_'Edit'}
-				</a>
-			</div>
-		</div>
-	</div>
+<div class="card-panel white no-margin text-right">
+    <a class="btn btn-icon btn-hover-warning tooltipped ajax-modal " n:href="Menu:edit" data-position="left" data-tooltip="{_'Edit menu'}">
+		<span class="material-icons">edit</span>
+	</a>
+</div>
 	
+<div class="card-panel no-shadow">
 	<div class="row">
 		<div class="col-md-8 col-lg-9">
 			{control menuGrid}
@@ -22,5 +14,5 @@
 		<div class="col-md-4 col-lg-3">
 			{control componentPositionList}
 		</div>
-	</div>
-	
+	</div>	
+</div>

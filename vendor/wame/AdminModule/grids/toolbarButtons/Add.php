@@ -2,18 +2,15 @@
 
 namespace Wame\MenuModule\Vendor\Wame\AdminModule\Grids\ToolbarButtons;
 
-use Wame\DataGridControl\BaseGridItem;
+use Wame\AdminModule\Vendor\Wame\DataGridControl\ToolbarButtons\Add as AdminAdd;
 
-class Add extends BaseGridItem
+
+class Add extends AdminAdd
 {
-	/** {@inheritDoc} */
-	public function render($grid)
+    public function __construct() 
     {
-        $grid->addToolbarButton(':Admin:Menu:addItem', _('Add item'), ['id' => $grid->presenter->id])
-                ->setIcon('fa fa-plus')
-                ->setClass('btn btn-success');
-                
-		return $grid;
-	}
-    
+        $this->setTitle(_('Add item'));
+        $this->setLink(':Admin:Menu:addItem');
+    }
+
 }
