@@ -1,0 +1,236 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MenuModule\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2016-11-07T09:51:14+01:00\n"
+"PO-Revision-Date: 2016-11-07T09:51:14+01:00\n"
+"Language: sk\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: gettext;__;ngettext;n__;pgettext;p__;dgettext;d__;dpgettext;dp__;npgettext;np__;dnpgettext;dnp__;noop;noop__;_\n"
+"X-Poedit-Basepath: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule\n"
+"X-Poedit-SearchPath-0: .\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n >= 2 && n <= 4) ? 1 : 2);\n"
+"X-Domain: MenuModule\n"
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/advanced/AdvancedFormContainer.php:33
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/temp/latteCompiler/menumodule-forms-advanced-default-latte.php:21
+msgid "Advanced"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/advanced/AdvancedFormContainer.php:35
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/columns/Showing.php:12
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/columns/Showing.php:22
+msgid "Showing"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/advanced/AdvancedFormContainer.php:39
+msgid "Open"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/advanced/AdvancedFormContainer.php:43
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/component/ComponentFormContainer.php:21
+msgid "CSS class"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/advanced/AdvancedFormContainer.php:45
+msgid "Icon"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/advanced/AdvancedFormContainer.php:47
+msgid "Only icon"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/basic/BasicFormContainer.php:47
+msgid "Basic"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/basic/BasicFormContainer.php:49
+msgid "Parent"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/basic/BasicFormContainer.php:50
+msgid "Highest level"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/MenuItemForm.php:84
+msgid "Update"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/MenuItemForm.php:89
+msgid "Create"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/MenuItemForm.php:109
+msgid "The menu item has been successfully updated."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/MenuItemForm.php:115
+msgid "The menu item was successfully created."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/MenuItemForm.php:207
+msgid "Type is not defined. You must use the setType() method to create a form."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/forms/MenuItemForm.php:264
+msgid "Missing variable $actionForm. You must use the setActionForm() method to create the form. Used to set the parameter ?do=."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/models/Item.php:201
+msgid "The menu item must be given name. Please use setName() method."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/repositories/MenuRepository.php:44
+msgid "Deleted"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/repositories/MenuRepository.php:45
+msgid "Active"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/repositories/MenuRepository.php:70
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/columns/Showing.php:15
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/columns/Showing.php:24
+msgid "Not logged"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/repositories/MenuRepository.php:71
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/columns/Showing.php:16
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/columns/Showing.php:25
+msgid "Logged"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/repositories/MenuRepository.php:72
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/columns/Showing.php:17
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/columns/Showing.php:26
+msgid "Everyone"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/repositories/MenuRepository.php:84
+msgid "Normal"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/repositories/MenuRepository.php:85
+msgid "New window"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/repositories/MenuRepository.php:86
+msgid "Small modal window"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/repositories/MenuRepository.php:87
+msgid "Medium modal window"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/repositories/MenuRepository.php:88
+msgid "Large modal window"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/components/AddMenuItem/ItemTemplate.php:50
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/toolbarButtons/Add.php:12
+msgid "Add item"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/actions/Edit.php:28
+msgid "Edit"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/columns/Showing.php:23
+msgid "All"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/columns/Status.php:11
+msgid "Status"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/columns/Status.php:12
+msgid "Enabled"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/columns/Status.php:16
+msgid "Disabled"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/columns/TitleLink.php:24
+msgid "Title"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/grids/columns/Type.php:24
+msgid "Type"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:48
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:74
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:101
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:127
+msgid "To enter this section you do not have enough privileges."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:53
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:106
+msgid "Missing identifier."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:60
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:113
+msgid "This component does not exist."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:65
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:118
+msgid "This component is removed."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:82
+msgid "This position does not exist."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:87
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:139
+msgid "This position is removed."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:92
+msgid "This position is disabled."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:134
+msgid "This menu item does not exist."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:151
+msgid "For this action you do not have enough privileges."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:157
+msgid "Menu item has been successfully deleted."
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:181
+msgid "Create menu"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:187
+msgid "Edit menu"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:194
+msgid "Select the type of item"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/AdminModule/presenters/MenuPresenter.php:200
+msgid "Deleting menu item"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/ComponentModule/components/MenuComponent.php:62
+msgid "Menu"
+msgstr ""
+
+#: /Users/MacMini2/Weby/GIT/cms-wame-admin-4.0.0/vendor/wame/MenuModule/vendor/wame/ComponentModule/components/MenuComponent.php:68
+msgid "Create tree menu"
+msgstr ""
