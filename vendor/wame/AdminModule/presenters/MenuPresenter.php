@@ -16,10 +16,10 @@ class MenuPresenter extends ComponentPresenter
 {
 	/** @var MenuEntity */
 	private $item;
-	
+
 	/** @var array */
 	private $items = [];
-	
+
 	/** @var ComponentForm @inject */
 	public $componentForm;
 
@@ -37,99 +37,99 @@ class MenuPresenter extends ComponentPresenter
 
 	/** @var PositionRepository @inject */
 	public $positionRepository;
-    
+
     /** @var MenuGrid @inject */
 	public $menuGrid;
 
-	
+
 	public function actionDefault()
 	{
 		if (!$this->user->isAllowed('menu', 'view')) {
 			$this->flashMessage(_('To enter this section you do not have enough privileges.'), 'danger');
 			$this->redirect(':Admin:Dashboard:', ['id' => null]);
 		}
-		
+
 		if (!$this->id) {
 			$this->flashMessage(_('Missing identifier.'), 'danger');
 			$this->redirect(':Admin:Component:', ['id' => null]);
 		}
-		
-		$this->component = $this->componentRepository->get(['id' => $this->id]);
-		
-		if (!$this->component) {
+
+		$this->entity = $this->componentRepository->get(['id' => $this->id]);
+
+		if (!$this->entity) {
 			$this->flashMessage(_('This component does not exist.'), 'danger');
 			$this->redirect(':Admin:Component:', ['id' => null]);
 		}
-		
-		if ($this->component->status == ComponentRepository::STATUS_REMOVE) {
+
+		if ($this->entity->getStatus() == ComponentRepository::STATUS_REMOVE) {
 			$this->flashMessage(_('This component is removed.'), 'danger');
 			$this->redirect(':Admin:Component:', ['id' => null]);
-		}		
+		}
 	}
-	
-	
+
+
 	public function actionCreate()
 	{
 		if (!$this->user->isAllowed('menu', 'create')) {
 			$this->flashMessage(_('To enter this section you do not have enough privileges.'), 'danger');
 			$this->redirect(':Admin:Dashboard:', ['id' => null]);
 		}
-		
+
 		if ($this->getParameter('p')) {
 			$position = $this->positionRepository->get(['id' => $this->getParameter('p')]);
-			
+
 			if (!$position) {
 				$this->flashMessage(_('This position does not exist.'), 'danger');
 				$this->redirect(':Admin:Component:', ['id' => null]);
 			}
-			
-			if ($position->status == PositionRepository::STATUS_REMOVE) {
+
+			if ($position->getStatus() == PositionRepository::STATUS_REMOVE) {
 				$this->flashMessage(_('This position is removed.'), 'danger');
 				$this->redirect(':Admin:Component:', ['id' => null]);
 			}
-			
-			if ($position->status == PositionRepository::STATUS_DISABLED) {
+
+			if ($position->getStatus() == PositionRepository::STATUS_DISABLED) {
 				$this->flashMessage(_('This position is disabled.'), 'warning');
 			}
 		}
 	}
-	
-	
+
+
 	public function actionEdit()
 	{
 		if (!$this->user->isAllowed('menu', 'edit')) {
 			$this->flashMessage(_('To enter this section you do not have enough privileges.'), 'danger');
 			$this->redirect(':Admin:Dashboard:', ['id' => null]);
 		}
-		
+
 		if (!$this->id) {
 			$this->flashMessage(_('Missing identifier.'), 'danger');
 			$this->redirect(':Admin:Component:', ['id' => null]);
 		}
-		
-		$this->component = $this->componentRepository->get(['id' => $this->id]);
-		
-		if (!$this->component) {
+
+		$this->entity = $this->componentRepository->get(['id' => $this->id]);
+
+		if (!$this->entity) {
 			$this->flashMessage(_('This component does not exist.'), 'danger');
 			$this->redirect(':Admin:Component:', ['id' => null]);
 		}
-		
-		if ($this->component->status == ComponentRepository::STATUS_REMOVE) {
+
+		if ($this->entity->getStatus() == ComponentRepository::STATUS_REMOVE) {
 			$this->flashMessage(_('This component is removed.'), 'danger');
 			$this->redirect(':Admin:Component:', ['id' => null]);
 		}
 	}
-	
-	
+
+
 	public function actionDeleteItem()
 	{
 		if (!$this->user->isAllowed('menu', 'deleteItem')) {
 			$this->flashMessage(_('To enter this section you do not have enough privileges.'), 'danger');
 			$this->redirect(':Admin:Dashboard:', ['id' => null]);
 		}
-		
+
 		$this->item = $this->menuRepository->get(['id' => $this->id]);
-		
+
 		if (!$this->item) {
 			$this->flashMessage(_('This menu item does not exist.'), 'danger');
 			$this->redirect(':Admin:Component:', ['id' => null]);
@@ -140,8 +140,8 @@ class MenuPresenter extends ComponentPresenter
 			$this->redirect(':Admin:Component:', ['id' => null]);
 		}
 	}
-    
-    
+
+
     /**
 	 * Delete menu item
 	 */
@@ -149,64 +149,64 @@ class MenuPresenter extends ComponentPresenter
 	{
 		if (!$this->user->isAllowed('menu', 'deleteItem')) {
 			$this->flashMessage(_('For this action you do not have enough privileges.'), 'danger');
-			$this->redirect(':Admin:Dashboard:', ['id' => null]);	
+			$this->redirect(':Admin:Dashboard:', ['id' => null]);
 		}
-		
+
 		$this->menuRepository->delete(['id' => $this->id]);
-		
+
 		$this->flashMessage(_('Menu item has been successfully deleted.'), 'success');
 		$this->redirect(':Admin:Menu:', ['id' => $this->item->component->id]);
 	}
-	
-	
+
+
 	public function renderDefault()
 	{
 		$showing = $this->getParameter('s');
-        
+
         if (!$showing) {
             $showing = MenuRepository::SHOWING_EVERYONE;
         }
-		
-		$this->template->siteTitle = $this->component->langs[$this->lang]->title;
+
+		$this->template->siteTitle = $this->entity->getTitle();
 		$this->template->menuManager = $this->menuManager->menuItemTypes;
-		$this->template->component = $this->component;
-		$this->template->items = $this->menuRepository->getItems($this->component, $showing);
+		$this->template->component = $this->entity;
+		$this->template->items = $this->menuRepository->getItems($this->entity, $showing);
 		$this->template->showing = $showing;
 		$this->template->showingList = $this->menuRepository->getShowingList();
 	}
-	
-	
+
+
 	public function renderCreate()
 	{
 		$this->template->siteTitle = _('Create menu');
 	}
-	
-	
+
+
 	public function renderEdit()
 	{
 		$this->template->siteTitle = _('Edit menu');
-		$this->template->componentTitle = $this->component->langs[$this->lang]->title;
+		$this->template->componentTitle = $this->entity->getTitle();
 	}
-	
-	
+
+
 	public function renderAddItem()
 	{
 		$this->template->siteTitle = _('Select the type of item');
 	}
-	
-	
+
+
 	public function renderDeleteItem()
 	{
 		$this->template->siteTitle = _('Deleting menu item');
 		$this->template->menuId = $this->item->component->id;
 	}
-    
-    
+
+
     /** components ************************************************************/
-    
+
     /**
 	 * Menu component form
-	 * 
+	 *
 	 * @return ComponentForm
 	 */
 	protected function createComponentMenuForm()
@@ -218,11 +218,11 @@ class MenuPresenter extends ComponentPresenter
 
 		return $form;
 	}
-	
-	
+
+
 	/**
 	 * Add menu item list
-	 * 
+	 *
 	 * @return MenuControl
 	 */
 	protected function createComponentAddMenuItem()
@@ -234,24 +234,24 @@ class MenuPresenter extends ComponentPresenter
 		$control->setListPrototype(Html::el('div')->setClass('row'));
 		$control->setItemPrototype(Html::el('div')->setClass('col-xs-6 col-sm-4 col-lg-3'));
 		$control->setItemTemplate($this->adminMenuItemTemplate);
-        
+
 		return $control;
 	}
-    
-    
+
+
     /**
      * Component menu grid
-     * 
+     *
      * @param type $name
      * @return type
      */
     protected function createComponentMenuGrid()
 	{
         $qb = $this->menuRepository->createQueryBuilder();
-        $qb->andWhere('a.component = ?1')->setParameter(1, $this->component);
+        $qb->andWhere('a.component = ?1')->setParameter(1, $this->entity);
 		$this->menuGrid->setDataSource($qb);
-		
+
 		return $this->menuGrid;
 	}
-	
+
 }
