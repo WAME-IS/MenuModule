@@ -11,3 +11,9 @@ services:
             - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\Status())
 #            - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Actions\Delete())
             - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\ToolbarButtons\Add())
+
+webloader:
+    js:
+        admin:
+            files:
+                - %appDir%/../vendor/wame/MenuModule/vendor/wame/AdminModule/assets/main.js
