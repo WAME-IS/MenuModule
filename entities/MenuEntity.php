@@ -19,7 +19,7 @@ class MenuEntity extends TranslatableEntity
 	use Columns\Status;
 
 	/**
-     * @ORM\OneToMany(targetEntity="MenuLangEntity", mappedBy="item")
+     * @ORM\OneToMany(targetEntity="MenuLangEntity", mappedBy="item", fetch="EAGER")
      */
     protected $langs;
 
