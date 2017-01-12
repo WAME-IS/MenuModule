@@ -11,6 +11,10 @@
     ],
     "require": {
         "wame/Core": "*",
+        "wame/DynamicObject": "*"
+    },
+    "softRequire": {
+        "wame/AdminModule": "*",
         "wame/ComponentModule": "*"
     },
     "autoload": {
