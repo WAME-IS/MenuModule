@@ -34,7 +34,7 @@ class BasicFormContainer extends BaseFormContainer
 	) {
 		parent::__construct();
 		
-		$id = $application->router->match($httpRequest)->getParameter('id');
+		$id = $application->getRouter()->match($httpRequest)->getParameter('id');
 		$this->menu = $componentRepository->get(['id' => $id]);
 		$this->items = $menuRepository->getItemList($this->menu);
 	}
