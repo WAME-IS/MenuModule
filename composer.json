@@ -16,11 +16,11 @@
     "config": { "secure-http": false },
     "require": {
         "wame/Core": ">=0.0.1",
-        "wame/DynamicObject": "0.0.*"
+        "wame/DynamicObject": ">=0.0.1"
     },
     "softRequire": {
-        "wame/AdminModule": "0.0.*",
-        "wame/ComponentModule": "0.0.*"
+        "wame/AdminModule": ">=0.0.1",
+        "wame/ComponentModule": ">=0.0.1"
     },
     "autoload": {
         "classmap": [
