@@ -1,0 +1,7 @@
+{extends 'default.latte'}
+
+<ul n:block="menuControlContainer" class="list-inline">
+    {foreach $menu->items as $item}
+        {$item}
+    {/foreach}
+</ul>
