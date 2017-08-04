@@ -1,7 +1,9 @@
 {if $menu}
-
-    {foreach $menu->items as $item}
-        {$item}
-    {/foreach}
+    
+    <ul n:block="menuControlContainer">
+        {foreach $menu->items as $item}
+            {$item}
+        {/foreach}
+    </ul>
 
 {/if}
