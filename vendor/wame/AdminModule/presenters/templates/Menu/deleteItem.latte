@@ -3,7 +3,7 @@
 		<h1>{$siteTitle}</h1>
 	</div>
 	
-	<p>{_'Do you really want to delete this menu item?'}</p>
+	<p>{_'Do you really want to delete %s menu item?', $item->getItemTitle()}</p>
 	
 	<a class="btn btn-danger" n:href="DeleteItem!">{_'Delete'}</a>
-	<a class="btn btn-default" n:href=":Admin:Menu:view, 'id' => $menuId">{_'Cancel'}</a>
+	<a class="btn btn-default" n:href=":Admin:Menu:, 'id' => $item->getComponent()->getId()" data-dissmiss="modal">{_'Cancel'}</a>

@@ -9,7 +9,7 @@ services:
             - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\TitleLink())
             - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\Showing())
             - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Columns\Status())
-#            - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Actions\Delete())
+            - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\Actions\Delete())
             - add(Wame\MenuModule\Vendor\Wame\AdminModule\Grids\ToolbarButtons\Add())
 
 webloader:

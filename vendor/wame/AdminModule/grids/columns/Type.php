@@ -24,13 +24,13 @@ class Type extends BaseGridItem
 		$grid->addColumnText('type', _('Type'))
 				->setRenderer(function($item) {
                     if($this->menuManager[$item->getType()]) {
-                        return Html::el('span')
-                            ->setClass($this->menuManager[$item->getType()]->getIcon())
-                            ->setTitle($this->menuManager[$item->getType()]->getTitle());
+                        return Html::el('small')->setText($this->menuManager[$item->getType()]->getTitle());
                     } else {
                         return Html::el('span')
-                                ->setClass('fa fa-question')
-                                ->setTitle($item->getType());
+                                ->setClass('material-icons text-danger tooltipped')
+                                ->setAttribute('data-tooltip', sprintf(_('Missing component %s'), $item->getType()))
+                                ->setAttribute('data-position', 'right')
+                                ->setText('help');
                     }
 				});
 		

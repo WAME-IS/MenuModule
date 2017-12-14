@@ -197,8 +197,9 @@ class MenuPresenter extends ComponentPresenter
 
 	public function renderDeleteItem()
 	{
-		$this->template->siteTitle = _('Deleting menu item');
-		$this->template->menuId = $this->item->component->id;
+        $this->template->siteTitle = _('Deleting menu item');
+        $this->template->subTitle = $this->item->getType();
+		$this->template->item = $this->item;
 	}
 
 
